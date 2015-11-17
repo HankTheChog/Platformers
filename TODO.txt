@@ -1,0 +1,18 @@
+Working
+-------
+players can move (wasd keys, and arrow keys move players)
+rope can be toggled (tab or right control)
+
+
+Working, but should be polished
+--------------------------------
+when landing from jump, player doesn't have momentum. this feels weird.
+jumps should have more momentum after long run - this effect happens now, but very lightly.
+
+TODO
+----
+rope should restrict players movements.
+players should be able to turn into platforms.
+camera should follow players (their center of mass).
+prevent players from getting too far from one another - they must both be visible at all times.
+add indications/animations when running/jumping.
