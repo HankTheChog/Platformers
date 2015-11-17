@@ -6,6 +6,12 @@ rope can be toggled (tab or right control)
 
 Working, but should be polished
 --------------------------------
+rope pulls players towards one another. their movement in this case depends on rope elasiticty and their
+   ground friction. we should play with those parameters to make it good.
+
+as an experiment, I also make the rope push players when they're too close (like a spring).
+   to change this, look for 'experiment' in Rope.cs
+
 when landing from jump, player doesn't have momentum. this feels weird.
 jumps should have more momentum after long run - this effect happens now, but very lightly.
 

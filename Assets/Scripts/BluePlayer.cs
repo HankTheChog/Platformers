@@ -6,6 +6,6 @@ public class BluePlayer : Player
     // Use this for initialization
     public void Start()
     {
-        base.initialize("BlueJump", "BlueHorizontal");
+        base.initialize("BlueJump", "BlueHorizontal","BlueVertical");
     }
 }
