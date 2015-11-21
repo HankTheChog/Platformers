@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
     public float jump_force = 8f;
     public float move_force = 300f;
     public float max_speed = 5f;
+    public float climbing_speed_factor = 0.01f;
 
 
     protected string jump_button;
@@ -66,13 +67,12 @@ public class Player : MonoBehaviour {
             // swinging from rope
             if (h != 0)
             {
-                rb.AddForce(h * move_force * Vector2.right);
+                rb.AddForce(h * move_force * Vector2.right); //todo: force should be perpendicular to rope direction
             }
             // climbing up and down
             if (!grounded && v != 0)
             {
-                Rope.activate_pull_force_distance -= 0.1f * v;
-                Rope.activate_pull_force_distance = Mathf.Clamp(Rope.activate_pull_force_distance - 0.1f * v, 1, Rope.max_allowed_rope_length);
+                Rope.activate_pull_force_distance = Mathf.Clamp(Rope.activate_pull_force_distance - climbing_speed_factor * v, 1, Rope.max_allowed_rope_length);
             }
         }
     }
@@ -88,7 +88,9 @@ public class Player : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        grounded = true;
+        if (col.contacts[0].normal == Vector2.up)
+            grounded = true;
+
     }
     public void OnCollisionExit2D(Collision2D col)
     {

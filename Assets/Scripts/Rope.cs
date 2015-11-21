@@ -29,7 +29,7 @@ public class Rope : MonoBehaviour {
             // the force of elastic bands is F= -k * dx^2
             float delta = d - activate_pull_force_distance;
             float delta_sqr = delta * delta;
-            float force = elasticity * delta_sqr;
+            float force = elasticity * delta_sqr * delta_sqr;
                 
             Vector2 blue_to_red = (red_player.transform.position - blue_player.transform.position).normalized;
 
