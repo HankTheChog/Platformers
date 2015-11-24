@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class BluePlayer : Player
+﻿namespace Assets.Scripts
 {
-    // Use this for initialization
-    public void Start()
+    public class BluePlayer : Player
     {
-        base.initialize("BlueJump", "BlueHorizontal","BlueVertical");
+        private void Start()
+        {
+            Initialize("BlueJump", "BlueHorizontal","BlueVertical");
+        }
     }
 }

@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class RedPlayer : Player
+﻿namespace Assets.Scripts
 {
-    // Use this for initialization
-    public void Start()
+    public class RedPlayer : Player
     {
-        base.initialize("RedJump", "RedHorizontal","RedVertical");
+        private void Start()
+        {
+            Initialize("RedJump", "RedHorizontal","RedVertical");
+        }
     }
 }
