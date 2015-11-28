@@ -4,7 +4,7 @@
     {
         private void Start()
         {
-            Initialize("RedJump", "RedHorizontal","RedVertical");
+            Initialize("RedHorizontal","RedVertical", "RedTransform");
         }
     }
 }

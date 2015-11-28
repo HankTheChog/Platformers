@@ -4,7 +4,7 @@
     {
         private void Start()
         {
-            Initialize("BlueJump", "BlueHorizontal","BlueVertical");
+            Initialize("BlueHorizontal","BlueVertical", "BlueTransform");
         }
     }
 }

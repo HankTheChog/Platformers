@@ -1,98 +1,211 @@
-﻿using UnityEngine;
-
-// problems with movement:
-// when landing from jump the character stops. if the player pushes the buttons, we still get a momentary stop. it should be smooth.
+﻿using System.Collections;
+using UnityEngine;
 
 // I would like that after running for a while, jumps are longer, and after running for short distance jumps are shorter.
-// - I get this effect now, but it's very very weak.
+//   this means track time in which horizontal axis is the same, and adjust jump accordingly.
+//   right now, it doesn't work right.
+//   also, when landing, do we keep the momentum for the next jump ?
+
+// todo: forces should be multiplied by mass (in case I ever want to change the mass)
+
+// IsGrounded possibilities:
+// cast capsule/box downwards (as wide as the player)
+// Use a trigger collider as the feet of the player, and update in OnTriggerEnter2D OnTriggerExit2D 
+//  grounded = Physics2D.OverlapArea(top_left.position, bottom_right.position, ground_layers);
+// 2D character controller
 
 namespace Assets.Scripts
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] private float jump_force = 8f;
-        [SerializeField] private float move_force = 300f;
-        [SerializeField] private float max_speed = 5f;
-        [SerializeField] private float climbing_speed_factor = 0.01f;
+        [SerializeField]
+        private float jump_force;
 
-        protected string jump_button;
+        [SerializeField]
+        private float walk_force;
+
+        [SerializeField]
+        private float rope_swing_force;
+
+        [SerializeField]
+        private float max_walk_speed;
+
+        [SerializeField]
+        private float climbing_speed_factor;
+
+        [SerializeField]
+        private GameObject other_player;
+
+
         protected string horizontal_axis;
         protected string vertical_axis;
-        protected string transform_button; // transform to platform
+        protected string transform_button;
 
-        protected bool jump;
+        protected bool is_platform_mode;
+
+        protected Rigidbody2D rb;
+
+        // everything about jumps
+        protected bool jump_button_pressed;
+        protected bool jumping = false;
         protected bool grounded;
-        protected Rigidbody2D rb; // can I just use rigidbody2D instead of this?
+        protected float max_jump_time = 0.4f;
 
-        protected static bool rope_active = false;
-        protected static float rope_max_distance = 0.0f;
-    
-        // I use this because I can pass parameters (can't with Start)
-        public void Initialize(string jump_button, string horizontal, string vertical)
+        // tracking the running time
+        protected float running_time_until_longest_jump = 0.75f;
+        protected float seconds_running_in_same_direction = 0f;
+        protected float horizontal_input_in_last_frame = 0f;
+
+
+        public void Initialize(string horizontal, string vertical, string trans)
         {
-            jump = false;
             grounded = true;
+            is_platform_mode = false;
             rb = GetComponent<Rigidbody2D>();
-            this.jump_button = jump_button;
             this.horizontal_axis = horizontal;
             this.vertical_axis = vertical;
+            this.transform_button = trans;
         }
-	
+
         private void Update()
         {
-            if (Input.GetButtonDown(jump_button) && grounded)
+            jump_button_pressed = Input.GetAxisRaw(vertical_axis) == 1;
+
+            if (jump_button_pressed && !jumping && grounded)
             {
-                jump = true;
+                StartCoroutine(Jump());
+            }
+
+            if (Input.GetButtonDown(transform_button))
+            {
+                is_platform_mode = !is_platform_mode;
+                Vector3 scale = transform.localScale;
+                if (is_platform_mode)
+                {
+                    scale.x = 12;
+                    rb.isKinematic = true;
+                    gameObject.layer = 8;
+                }
+                else
+                {
+                    scale.x = 3;
+                    rb.isKinematic = false;
+                    gameObject.layer = 9;
+                }
+                transform.localScale = scale;
             }
         }
+
+
+
         private void FixedUpdate()
         {
-            if (jump)
-            {
-                rb.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
-                jump = false;
-                grounded = false;
-            }
-
-            grounded = OnGround();
-
             float h = Input.GetAxisRaw(horizontal_axis);
             float v = Input.GetAxisRaw(vertical_axis);
-            // movement, while on ground only (not in mid-jump)
+
+            if (h == horizontal_input_in_last_frame)
+            {
+                seconds_running_in_same_direction += Time.deltaTime;
+                if (seconds_running_in_same_direction > running_time_until_longest_jump)
+                    seconds_running_in_same_direction = running_time_until_longest_jump;
+            }
+            else
+            {
+                seconds_running_in_same_direction = 0f;
+            }
+
+            //grounded = OnGround();
             if (grounded)
             {
-                float vx = Mathf.Clamp(rb.velocity.x + h * move_force, -max_speed, max_speed);
-                rb.velocity = new Vector2(vx, rb.velocity.y);
+                rb.AddForce(Vector2.right * h * walk_force, ForceMode2D.Impulse);
+
+                if (Mathf.Abs(rb.velocity.x) > max_walk_speed)
+                {
+                    Vector2 new_speed = rb.velocity;
+                    new_speed.x = Mathf.Clamp(rb.velocity.x, -max_walk_speed, max_walk_speed);
+                    rb.velocity = new_speed;
+                }
             }
+
             if (Rope.is_active)
             {
                 // swinging from rope
                 if (h != 0)
                 {
-                    rb.AddForce(h * move_force * Vector2.right); //todo: force should be perpendicular to rope direction
+                    Vector2 to_other = (other_player.transform.position - transform.position).normalized;
+                    Vector2 clockwise_rotate = new Vector2(to_other.y, -to_other.x);
+                    rb.AddForce(h * rope_swing_force * clockwise_rotate);
                 }
                 // climbing up and down
                 if (!grounded && v != 0)
                 {
-                    Rope.activate_pull_force_distance = Mathf.Clamp(Rope.activate_pull_force_distance - climbing_speed_factor * v, 1, Rope.max_allowed_rope_length);
+                    Rope.rope_length = Mathf.Clamp(Rope.rope_length - climbing_speed_factor * v, 1, 5);
                 }
             }
+
+            horizontal_input_in_last_frame = h;
         }
 
         private bool OnGround()
         {
+
+            /*
+            float width = GetComponent<Renderer>().bounds.size.x;
+            Vector2 right_side = new Vector2(transform.position.x + width * 0.5f, transform.position.y);
+            Vector2 left_side = new Vector2(transform.position.x - width * 0.5f, transform.position.y);
+            bool right_side_grounded = Physics2D.Raycast(right_side, Vector2.down, 0.5f, LayerMask.GetMask("platform"));
+            bool left_side_grounded = Physics2D.Raycast(left_side, Vector2.down, 0.5f, LayerMask.GetMask("platform"));
+            return right_side_grounded || left_side_grounded;
+            */
             return Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("platform"));
+
+            /*
+            another way to check if I'm grounded is to make a collider on the "legs" area of the player,
+            that actually extends a bit downwards.
+            The collider is a "trigger" collider, and I only test if it touches a platform object.
+            */
+
         }
 
-        /*private void OnCollisionEnter2D(Collision2D col)
+        public void OnCollisionEnter2D()
         {
-            if (col.contacts[0].normal == Vector2.up)
+            grounded = OnGround();
+        }
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.tag=="platform")
+            {
                 grounded = true;
-
+            }
         }
-        private void OnCollisionExit2D(Collision2D col)
+
+
+        // I copied this from : http://gamasutra.com/blogs/DanielFineberg/20150825/244650/Designing_a_Jump_in_Unity.php
+        IEnumerator Jump()
         {
+            float timer = 0f;
+            jumping = true;
             grounded = false;
-        }*/
+
+            // since we zeroed the velocity, we need to restore sideways velocity to the player.
+            // todo: the maximum force should be relevant to the walk velocity before the jump.
+            // maybe I can also add it to the loop, adjusting in small steps...
+            /*
+                        rb.velocity = Vector2.zero;
+            Vector2 horiz_force = Vector2.Lerp(Vector2.zero, Vector2.right, (seconds_running_in_same_direction / running_time_until_longest_jump));
+            rb.AddForce(Input.GetAxisRaw(horizontal_axis) * horiz_force * 5, ForceMode2D.Impulse);
+            */
+
+            while (jump_button_pressed && timer < max_jump_time)
+            {
+                float proportion_completed = (timer / max_jump_time);
+                Vector2 force_in_this_frame = Vector2.Lerp(Vector2.up, Vector2.zero, proportion_completed);
+                rb.AddForce(force_in_this_frame, ForceMode2D.Impulse);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            jumping = false;
+        }
+
     }
 }
