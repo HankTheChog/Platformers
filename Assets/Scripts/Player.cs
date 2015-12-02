@@ -51,12 +51,6 @@ namespace Assets.Scripts
         protected bool grounded;
         protected float max_jump_time = 0.4f;
 
-        // tracking the running time
-        protected float running_time_until_longest_jump = 0.75f;
-        protected float seconds_running_in_same_direction = 0f;
-        protected float horizontal_input_in_last_frame = 0f;
-
-
         public void Initialize(string horizontal, string vertical, string trans)
         {
             grounded = true;
@@ -79,42 +73,34 @@ namespace Assets.Scripts
             if (Input.GetButtonDown(transform_button))
             {
                 is_platform_mode = !is_platform_mode;
-                Vector3 scale = transform.localScale;
-                if (is_platform_mode)
-                {
-                    scale.x = 12;
-                    rb.isKinematic = true;
-                    gameObject.layer = 8;
-                }
-                else
-                {
-                    scale.x = 3;
-                    rb.isKinematic = false;
-                    gameObject.layer = 9;
-                }
-                transform.localScale = scale;
+                TurnIntoPlatform();
             }
         }
 
 
+        private void TurnIntoPlatform()
+        {
+            Vector3 scale = transform.localScale;
+            if (is_platform_mode)
+            {
+                scale.x = 12;
+                rb.isKinematic = true;
+                gameObject.layer = 8;
+            }
+            else
+            {
+                scale.x = 3;
+                rb.isKinematic = false;
+                gameObject.layer = 9;
+            }
+            transform.localScale = scale;
+        }
 
         private void FixedUpdate()
         {
             float h = Input.GetAxisRaw(horizontal_axis);
             float v = Input.GetAxisRaw(vertical_axis);
 
-            if (h == horizontal_input_in_last_frame)
-            {
-                seconds_running_in_same_direction += Time.deltaTime;
-                if (seconds_running_in_same_direction > running_time_until_longest_jump)
-                    seconds_running_in_same_direction = running_time_until_longest_jump;
-            }
-            else
-            {
-                seconds_running_in_same_direction = 0f;
-            }
-
-            //grounded = OnGround();
             if (grounded)
             {
                 rb.AddForce(Vector2.right * h * walk_force, ForceMode2D.Impulse);
@@ -142,35 +128,8 @@ namespace Assets.Scripts
                     Rope.rope_length = Mathf.Clamp(Rope.rope_length - climbing_speed_factor * v, 1, 5);
                 }
             }
-
-            horizontal_input_in_last_frame = h;
         }
 
-        private bool OnGround()
-        {
-
-            /*
-            float width = GetComponent<Renderer>().bounds.size.x;
-            Vector2 right_side = new Vector2(transform.position.x + width * 0.5f, transform.position.y);
-            Vector2 left_side = new Vector2(transform.position.x - width * 0.5f, transform.position.y);
-            bool right_side_grounded = Physics2D.Raycast(right_side, Vector2.down, 0.5f, LayerMask.GetMask("platform"));
-            bool left_side_grounded = Physics2D.Raycast(left_side, Vector2.down, 0.5f, LayerMask.GetMask("platform"));
-            return right_side_grounded || left_side_grounded;
-            */
-            return Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("platform"));
-
-            /*
-            another way to check if I'm grounded is to make a collider on the "legs" area of the player,
-            that actually extends a bit downwards.
-            The collider is a "trigger" collider, and I only test if it touches a platform object.
-            */
-
-        }
-
-        public void OnCollisionEnter2D()
-        {
-            grounded = OnGround();
-        }
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.tag=="platform")
@@ -187,11 +146,11 @@ namespace Assets.Scripts
             jumping = true;
             grounded = false;
 
+            /*
+            rb.velocity = Vector2.zero;
             // since we zeroed the velocity, we need to restore sideways velocity to the player.
             // todo: the maximum force should be relevant to the walk velocity before the jump.
             // maybe I can also add it to the loop, adjusting in small steps...
-            /*
-                        rb.velocity = Vector2.zero;
             Vector2 horiz_force = Vector2.Lerp(Vector2.zero, Vector2.right, (seconds_running_in_same_direction / running_time_until_longest_jump));
             rb.AddForce(Input.GetAxisRaw(horizontal_axis) * horiz_force * 5, ForceMode2D.Impulse);
             */

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestPlayerScript : MonoBehaviour {
+public class BasicPlayerScript : MonoBehaviour {
 
     private bool jumping = false;
     private bool grounded = true;
@@ -75,9 +75,7 @@ public class TestPlayerScript : MonoBehaviour {
     {
         Vector2 box_size = GetComponent<SpriteRenderer>().bounds.size * 0.5f;
         bool test = Physics2D.BoxCast(transform.position, box_size, 0, Vector2.down, box_size.y, collide_with.value);
-        Debug.DrawLine(transform.position, transform.position + new Vector3(0, -box_size.y, 0), Color.red);
         return test;
-        //return Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("platform"));
     }
 
     IEnumerator Jump()
