@@ -1,10 +1,12 @@
 ﻿namespace Assets.Scripts
 {
-    public class BluePlayer : Player
+    public class BluePlayer : BasicPlayerScript
     {
         private void Start()
         {
-            Initialize("BlueHorizontal","BlueVertical", "BlueTransform");
+            horizontal  = "BlueHorizontal";
+            vertical    = "BlueVertical";
+            platformize = "BlueTransform";
         }
     }
 }

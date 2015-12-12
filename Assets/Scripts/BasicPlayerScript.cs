@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BasicPlayerScript : MonoBehaviour {
 
+    public float force_multiplier_under_magnet = 10f;
+
     private bool jumping = false;
     private bool grounded = true;
     private bool jump_button_pressed = false;
@@ -10,22 +12,34 @@ public class BasicPlayerScript : MonoBehaviour {
 
     private float walk_force = 10f;
     private float max_walk_speed = 5f;
-    public LayerMask collide_with;
+    public LayerMask can_walk_on;
 
     private float h_last_frame;
     private float time_for_full_running_speed = 1.0f;
     private float running_time = 0f;
     private Rigidbody2D rb;
 
-    void Start()
+
+
+    protected bool is_platform_mode;
+    protected string horizontal, vertical, platformize;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
+    float GetWalkForce()
+    {
+        return walk_force * (MagneticForce.IsActive() ? force_multiplier_under_magnet : 1.0f);
+    }
+    float GetJumpForce()
+    {
+        return (MagneticForce.IsActive() ? force_multiplier_under_magnet : 1.0f);
+    }
     void FixedUpdate()
     {
-        float h = Input.GetAxisRaw("RedHorizontal");
-        float v = Input.GetAxisRaw("RedVertical");
+        float h = Input.GetAxisRaw(horizontal);
         grounded = IsGrounded();
 
         if (grounded)
@@ -47,7 +61,7 @@ public class BasicPlayerScript : MonoBehaviour {
             if (Mathf.Abs(rb.velocity.x) < max_walk_speed)
             {
                 float r = (Mathf.Min(rb.velocity.x, max_walk_speed) / max_walk_speed);
-                rb.AddForce((1 - r) * Vector2.right * h * walk_force, ForceMode2D.Impulse);
+                rb.AddForce((1 - r) * Vector2.right * h * GetWalkForce(), ForceMode2D.Impulse);
             }
             if (Mathf.Abs(rb.velocity.x) > max_walk_speed)
             {
@@ -61,20 +75,48 @@ public class BasicPlayerScript : MonoBehaviour {
 
     void Update ()
     {
-        float h = Input.GetAxisRaw("RedHorizontal");
-        float v = Input.GetAxisRaw("RedVertical");
+        if (InGameMenu.paused)
+        {
+            return; // we don't process any input if game is paused
+        }
+
+        float v = Input.GetAxisRaw(vertical);
         jump_button_pressed = (v == 1);
         
         if (jump_button_pressed && grounded && !jumping)
         {
             StartCoroutine(Jump());
         }
-	}
+
+        if (Input.GetButtonDown(platformize))
+        {
+            is_platform_mode = !is_platform_mode;
+            TurnIntoPlatform();
+        }
+    }
+
+    private void TurnIntoPlatform()
+    {
+        Vector3 scale = transform.localScale;
+        if (is_platform_mode)
+        {
+            scale.x = 12;
+            rb.isKinematic = true;
+            gameObject.layer = 8;
+        }
+        else
+        {
+            scale.x = 3;
+            rb.isKinematic = false;
+            gameObject.layer = 9;
+        }
+        transform.localScale = scale;
+    }
 
     bool IsGrounded()
     {
         Vector2 box_size = GetComponent<SpriteRenderer>().bounds.size * 0.5f;
-        bool test = Physics2D.BoxCast(transform.position, box_size, 0, Vector2.down, box_size.y, collide_with.value);
+        bool test = Physics2D.BoxCast(transform.position, box_size, 0, Vector2.down, box_size.y, can_walk_on.value);
         return test;
     }
 

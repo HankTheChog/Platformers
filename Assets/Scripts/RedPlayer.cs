@@ -1,10 +1,12 @@
 ﻿namespace Assets.Scripts
 {
-    public class RedPlayer : Player
+    public class RedPlayer : BasicPlayerScript
     {
         private void Start()
         {
-            Initialize("RedHorizontal","RedVertical", "RedTransform");
+            horizontal  = "RedHorizontal";
+            vertical    = "RedVertical";
+            platformize = "RedTransform";
         }
     }
 }
