@@ -34,7 +34,8 @@ public class MagneticForce : MonoBehaviour {
             float distance_sqr = red_to_blue.sqrMagnitude;
             if (distance_sqr > minimal_distance_to_active)
             {
-                Vector3 force_on_red = force_constant * red_to_blue.normalized / distance_sqr;
+                Vector3 force_on_red = force_constant * red_to_blue.normalized;
+                //  / distance_sqr
 
                 red.GetComponent<Rigidbody2D>().AddForce(force_on_red);
                 blue.GetComponent<Rigidbody2D>().AddForce(-force_on_red);

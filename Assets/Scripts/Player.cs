@@ -49,7 +49,7 @@ namespace Assets.Scripts
         protected bool jump_button_pressed;
         protected bool jumping = false;
         protected bool grounded;
-        protected float max_jump_time = 0.4f;
+        public float max_jump_time = 0.2f;
 
         public void Initialize(string horizontal, string vertical, string trans)
         {
@@ -63,7 +63,8 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            jump_button_pressed = Input.GetAxisRaw(vertical_axis) == 1;
+            jump_button_pressed = Input.GetKeyDown("Up");
+                //Input.GetAxisRaw(vertical_axis) == 1;
 
             if (jump_button_pressed && !jumping && grounded)
             {
