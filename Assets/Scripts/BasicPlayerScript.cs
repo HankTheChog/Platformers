@@ -8,7 +8,7 @@ public class BasicPlayerScript : MonoBehaviour {
     private bool jumping = false;
     private bool grounded = true;
     private bool jump_button_pressed = false;
-    private float max_jump_time = 0.175f;
+    public float max_jump_time = 0.175f;
 
     private float walk_force = 10f;
     private float max_walk_speed = 5f;
