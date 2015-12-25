@@ -6,7 +6,7 @@ public class GameParameters : MonoBehaviour {
     static public float max_walk_speed = 5.0f;
     static public float max_air_horizontal_speed = 5.0f;
 
-    static public float walking_accel = 10f;
+    static public float walking_accel = 20f;
     static public float air_travel_accel = 10f;
 
     static public float max_jump_height = 2f;

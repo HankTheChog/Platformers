@@ -13,6 +13,7 @@ public class BasicPlayerScript : MonoBehaviour {
     private bool jumping = false;
     private bool grounded = true;
     private bool jump_button_pressed = false;
+    private bool jump_button_was_pressed;
 
     private Rigidbody2D rb;
 
@@ -26,6 +27,7 @@ public class BasicPlayerScript : MonoBehaviour {
     protected SpriteRenderer aura_sprite;
     protected Transform aura_transform;
     protected Vector3 origin_aura_scale;
+    protected int original_layer;
 
 
     void Awake()
@@ -36,6 +38,7 @@ public class BasicPlayerScript : MonoBehaviour {
         aura_sprite = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         aura_transform = transform.GetChild(0).transform;
         origin_aura_scale = aura_transform.localScale;
+        original_layer = gameObject.layer;
     }
 
     public void Start()
@@ -103,7 +106,7 @@ public class BasicPlayerScript : MonoBehaviour {
         float v = Input.GetAxisRaw(vertical);
         jump_button_pressed = (v == 1);
 
-        if (jump_button_pressed && grounded && !jumping && !is_platform_mode)
+        if (jump_button_pressed && !jump_button_was_pressed && grounded && !jumping && !is_platform_mode)
         {
             StartCoroutine(Jump());
         }
@@ -112,13 +115,15 @@ public class BasicPlayerScript : MonoBehaviour {
         {
             TurnIntoPlatformOrBack();
         }
-
+        
         //todo: only change when magnet is toggled, not every frame
         {
             Color new_color = aura_sprite.color;
             new_color.a = MagneticForce.IsActive() ? 1.0f : 0.1f;
             aura_sprite.color = new_color;
         }
+
+        jump_button_was_pressed = jump_button_pressed;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -172,7 +177,7 @@ public class BasicPlayerScript : MonoBehaviour {
             scale.x = 1;
             aura_scale = origin_aura_scale;
             rb.isKinematic = false;
-            gameObject.layer = 9;
+            gameObject.layer = original_layer;
         }
         transform.localScale = scale;
         aura_transform.localScale = aura_scale;
