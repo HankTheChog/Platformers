@@ -4,9 +4,9 @@ using System.Collections;
 public class BasicPlayerScript : MonoBehaviour {
 
 
-    public enum PlayerType { RED, BLUE };
+    public enum PlayerType { RED, BLUE, NUM_OF_PLAYERS };
 
-    public PlayerType InputSource;
+    public PlayerType WhoAmI;
 
     public LayerMask can_walk_on;
 
@@ -23,17 +23,24 @@ public class BasicPlayerScript : MonoBehaviour {
     protected float dist_to_ground;
     protected float initial_jump_speed;
 
+    protected SpriteRenderer aura_sprite;
+    protected Transform aura_transform;
+    protected Vector3 origin_aura_scale;
+
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         size_self = GetComponent<Renderer>().bounds.size;
         dist_to_ground = GetComponent<PolygonCollider2D>().bounds.extents.y;
+        aura_sprite = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        aura_transform = transform.GetChild(0).transform;
+        origin_aura_scale = aura_transform.localScale;
     }
 
     public void Start()
     {
-        if (InputSource == PlayerType.RED)
+        if (WhoAmI == PlayerType.RED)
         {
             horizontal  = "RedHorizontal";
             vertical    = "RedVertical";
@@ -95,8 +102,8 @@ public class BasicPlayerScript : MonoBehaviour {
 
         float v = Input.GetAxisRaw(vertical);
         jump_button_pressed = (v == 1);
-        
-        if (jump_button_pressed && grounded && !jumping)
+
+        if (jump_button_pressed && grounded && !jumping && !is_platform_mode)
         {
             StartCoroutine(Jump());
         }
@@ -105,6 +112,43 @@ public class BasicPlayerScript : MonoBehaviour {
         {
             TurnIntoPlatformOrBack();
         }
+
+        //todo: only change when magnet is toggled, not every frame
+        {
+            Color new_color = aura_sprite.color;
+            new_color.a = MagneticForce.IsActive() ? 1.0f : 0.1f;
+            aura_sprite.color = new_color;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "spike")
+        {
+            Destroy(transform.gameObject);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "anti-magnet")
+        {
+            if (MagneticForce.IsActive())
+            {
+                MagneticForce.Cooldown();
+                rb.velocity = Vector2.zero;
+            }
+        }
+        if (col.tag == "exit door")
+        {
+            col.gameObject.GetComponent<ExitDoorway>().PlayerTouching(WhoAmI);
+        }
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "exit door")
+        {
+            col.gameObject.GetComponent<ExitDoorway>().PlayerLeaving(WhoAmI);
+        }
     }
 
     private void TurnIntoPlatformOrBack()
@@ -112,19 +156,26 @@ public class BasicPlayerScript : MonoBehaviour {
         is_platform_mode = !is_platform_mode;
 
         Vector3 scale = transform.localScale;
+        Vector3 aura_scale = aura_transform.localScale;
         if (is_platform_mode)
         {
-            scale.x = 3;
-            rb.isKinematic = true;
-            gameObject.layer = 8;
+            scale.x = 3; // enlarging the player horizontally
+            rb.isKinematic = true; // gravity won't apply if we're kinematic
+            gameObject.layer = 8; // this makes the player be in the "platform" layer, so the other player can jump off it
+
+            // the aura object grows with player (because is its child), so I downsize it here
+            //aura_scale.x /= 3; 
+            //aura_scale.y /= 3;
         }
         else
         {
             scale.x = 1;
+            aura_scale = origin_aura_scale;
             rb.isKinematic = false;
             gameObject.layer = 9;
         }
         transform.localScale = scale;
+        aura_transform.localScale = aura_scale;
     }
 
     bool IsGrounded()
@@ -135,7 +186,12 @@ public class BasicPlayerScript : MonoBehaviour {
     public void OnDrawGizmos()
     {
         float max_jump_dist = GameParameters.max_jump_time * 2 * GameParameters.max_walk_speed;
-        
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, GameParameters.magnet_radius);
+
+        Gizmos.color = Color.white;
+
         Gizmos.DrawLine(transform.position, transform.position + Vector3.right * max_jump_dist);
         Gizmos.DrawLine(transform.position, transform.position + Vector3.left  * max_jump_dist);
 
@@ -169,5 +225,6 @@ public class BasicPlayerScript : MonoBehaviour {
         }
         // restore normal gravity
         jumping = false;
+        Debug.Log("jump coroutine finished");
     }
 }

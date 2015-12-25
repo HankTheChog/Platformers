@@ -6,10 +6,12 @@ public class MagneticForce : MonoBehaviour {
     [SerializeField]
     public float force_constant = 10.0f;
 
-    public float reduce_player_friction_when_magnet_is_on = 1.0f; // 1 has effect, values larger than 1 reduce friction
 
     [SerializeField]
-    private static bool active = false;
+    private static bool on_cooldown = false;
+
+    [SerializeField]
+    public static float cooldown_time = 2f;
 
     [SerializeField]
     private GameObject red;
@@ -17,8 +19,12 @@ public class MagneticForce : MonoBehaviour {
     [SerializeField]
     private GameObject blue;
 
+    private static bool active = false;
+    private static float start_cooldown_time;
+
     private Vector3 red_size, blue_size;
     private float minimal_distance_to_active;
+
     // Use this for initialization
     void Start () {
         red_size = red.gameObject.GetComponent<Renderer>().bounds.size;
@@ -28,17 +34,24 @@ public class MagneticForce : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (active)
+        if ((Time.time - start_cooldown_time) > cooldown_time)
+        {
+            on_cooldown = false;
+        }
+        if (active && !on_cooldown)
         {
             Vector3 red_to_blue = (blue.transform.position - red.transform.position);
-            float distance_sqr = red_to_blue.sqrMagnitude;
-            if (distance_sqr > minimal_distance_to_active)
+            float distance = red_to_blue.magnitude;
+            if (distance < GameParameters.magnet_radius)
             {
-                Vector3 force_on_red = force_constant * red_to_blue.normalized;
-                //  / distance_sqr
+                //if (distance > minimal_distance_to_active)
+                {
+                    Vector3 force_on_red = force_constant * red_to_blue.normalized;
+                    //  / distance_sqr
 
-                red.GetComponent<Rigidbody2D>().AddForce(force_on_red);
-                blue.GetComponent<Rigidbody2D>().AddForce(-force_on_red);
+                    red.GetComponent<Rigidbody2D>().AddForce(force_on_red);
+                    blue.GetComponent<Rigidbody2D>().AddForce(-force_on_red);
+                }
             }
         }
     }
@@ -53,16 +66,6 @@ public class MagneticForce : MonoBehaviour {
         bool button_state = Input.GetButton("ToggleRope");
         if (button_state != active)
         {
-            if (button_state)
-            {
-                // since both players share the physics material, reducing for one of them is enough
-                red.GetComponent<PolygonCollider2D>().sharedMaterial.friction /= reduce_player_friction_when_magnet_is_on;
-            }
-            else
-            {
-                //TODO: save previous values and restore. repeated division and multiplication cause errors
-                red.GetComponent<PolygonCollider2D>().sharedMaterial.friction *= reduce_player_friction_when_magnet_is_on;
-            }
             active = button_state;
         }
     }
@@ -71,4 +74,11 @@ public class MagneticForce : MonoBehaviour {
     {
         return active;
     }
+
+    public static void Cooldown()
+    {
+        on_cooldown = true;
+        start_cooldown_time = Time.time;
+    }
+
 }
