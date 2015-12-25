@@ -3,74 +3,87 @@ using System.Collections;
 
 public class BasicPlayerScript : MonoBehaviour {
 
-    public float force_multiplier_under_magnet = 10f;
+
+    public enum PlayerType { RED, BLUE };
+
+    public PlayerType InputSource;
+
+    public LayerMask can_walk_on;
 
     private bool jumping = false;
     private bool grounded = true;
     private bool jump_button_pressed = false;
-    public float max_jump_time = 0.175f;
 
-    private float walk_force = 10f;
-    private float max_walk_speed = 5f;
-    public LayerMask can_walk_on;
-
-    private float h_last_frame;
-    private float time_for_full_running_speed = 1.0f;
-    private float running_time = 0f;
     private Rigidbody2D rb;
-
-
 
     protected bool is_platform_mode;
     protected string horizontal, vertical, platformize;
 
+    protected Vector2 size_self;
+    protected float dist_to_ground;
+    protected float initial_jump_speed;
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        size_self = GetComponent<Renderer>().bounds.size;
+        dist_to_ground = GetComponent<PolygonCollider2D>().bounds.extents.y;
     }
 
-    float GetWalkForce()
+    public void Start()
     {
-        return walk_force * (MagneticForce.IsActive() ? force_multiplier_under_magnet : 1.0f);
+        if (InputSource == PlayerType.RED)
+        {
+            horizontal  = "RedHorizontal";
+            vertical    = "RedVertical";
+            platformize = "RedTransform";
+        }
+        else
+        {
+            horizontal  = "BlueHorizontal";
+            vertical    = "BlueVertical";
+            platformize = "BlueTransform";
+        }
+
+        UpdateJumpParameters();
     }
-    float GetJumpForce()
+
+
+    public void UpdateJumpParameters()
     {
-        return (MagneticForce.IsActive() ? force_multiplier_under_magnet : 1.0f);
+        //todo: instead of changing global gravity, change local gravity scale
+        //      or recalculate every jump (this way it's updated in game mode also)
+        // this also changes friction, which is bad !
+        Physics2D.gravity = Vector3.down * 2 * GameParameters.max_jump_height / (GameParameters.max_jump_time * GameParameters.max_jump_time);
+        initial_jump_speed = -Physics2D.gravity.y * GameParameters.max_jump_time;
     }
+
     void FixedUpdate()
     {
+        float max_walk_speed = GameParameters.max_walk_speed;
+        float max_air_horizontal_speed = GameParameters.max_air_horizontal_speed;
+
         float h = Input.GetAxisRaw(horizontal);
         grounded = IsGrounded();
 
         if (grounded)
         {
-            if (h == h_last_frame)
-            {
-                running_time += Time.deltaTime;
-            }
-            else
-            {
-                running_time = 0f;
-            }
+            //todo: deceleration should be faster, to allow quick direction changes.
+            if (h * rb.velocity.x < max_walk_speed)
+                rb.AddForce(Vector2.right * h * GameParameters.walking_accel);
 
-            // todo: I think movement is still jittery.
-            // how to make it smoother ?
-            // tweak the force I'm applying?
-            // add counter-force instead of clamping max-velocity?
-            // translate the rigidbody myself instead of using forces ? (won't take friction into account)
-            if (Mathf.Abs(rb.velocity.x) < max_walk_speed)
-            {
-                float r = (Mathf.Min(rb.velocity.x, max_walk_speed) / max_walk_speed);
-                rb.AddForce((1 - r) * Vector2.right * h * GetWalkForce(), ForceMode2D.Impulse);
-            }
             if (Mathf.Abs(rb.velocity.x) > max_walk_speed)
-            {
-                Vector2 new_speed = rb.velocity;
-                new_speed.x = Mathf.Clamp(rb.velocity.x, -max_walk_speed, max_walk_speed);
-                rb.velocity = new_speed;
-            }
+                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_walk_speed, rb.velocity.y);
         }
-        h_last_frame = h;
+        else
+        {
+            if (h * rb.velocity.x < max_air_horizontal_speed)
+                rb.AddForce(Vector2.right * h * GameParameters.air_travel_accel);
+
+            if (Mathf.Abs(rb.velocity.x) > max_air_horizontal_speed)
+                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_air_horizontal_speed, rb.velocity.y);
+        }
     }
 
     void Update ()
@@ -90,23 +103,24 @@ public class BasicPlayerScript : MonoBehaviour {
 
         if (Input.GetButtonDown(platformize))
         {
-            is_platform_mode = !is_platform_mode;
-            TurnIntoPlatform();
+            TurnIntoPlatformOrBack();
         }
     }
 
-    private void TurnIntoPlatform()
+    private void TurnIntoPlatformOrBack()
     {
+        is_platform_mode = !is_platform_mode;
+
         Vector3 scale = transform.localScale;
         if (is_platform_mode)
         {
-            scale.x = 12;
+            scale.x = 3;
             rb.isKinematic = true;
             gameObject.layer = 8;
         }
         else
         {
-            scale.x = 3;
+            scale.x = 1;
             rb.isKinematic = false;
             gameObject.layer = 9;
         }
@@ -115,34 +129,45 @@ public class BasicPlayerScript : MonoBehaviour {
 
     bool IsGrounded()
     {
-        Vector2 box_size = GetComponent<SpriteRenderer>().bounds.size * 0.5f;
-        bool test = Physics2D.BoxCast(transform.position, box_size, 0, Vector2.down, box_size.y, can_walk_on.value);
-        return test;
+        return Physics2D.BoxCast(transform.position, size_self, 0, Vector2.down, dist_to_ground, can_walk_on.value);
+    }
+
+    public void OnDrawGizmos()
+    {
+        float max_jump_dist = GameParameters.max_jump_time * 2 * GameParameters.max_walk_speed;
+        
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * max_jump_dist);
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.left  * max_jump_dist);
+
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.up * GameParameters.max_jump_height);
+
+        Vector3 half_point_right = transform.position + Vector3.right * max_jump_dist / 2;
+        Vector3 half_point_left = transform.position + Vector3.left* max_jump_dist / 2;
+        Gizmos.DrawLine(half_point_right, half_point_right + Vector3.up * GameParameters.max_jump_height);
+        Gizmos.DrawLine(half_point_left, half_point_left + Vector3.up * GameParameters.max_jump_height);
     }
 
     IEnumerator Jump()
     {
         float timer = 0f;
         jumping = true;
-        grounded = false;
+        //rb.AddForce(Vector2.up * initial_jump_speed, ForceMode2D.Impulse);
+        Vector2 v = rb.velocity;
+        v.y += initial_jump_speed;
+        rb.velocity = v;
 
-        // since we zeroed the velocity, we need to restore sideways velocity to the player.
-        // todo: the maximum force should be relevant to the walk velocity before the jump.
-        // maybe I can also add it to the loop, adjusting in small steps...
-        /*
-                    rb.velocity = Vector2.zero;
-        Vector2 horiz_force = Vector2.Lerp(Vector2.zero, Vector2.right, (seconds_running_in_same_direction / running_time_until_longest_jump));
-        rb.AddForce(Input.GetAxisRaw(horizontal_axis) * horiz_force * 5, ForceMode2D.Impulse);
-        */
-
-        while (jump_button_pressed && timer < max_jump_time)
+        while (jump_button_pressed && timer < GameParameters.max_jump_time)
         {
+            // todo: should suppress gravity for some time, 
+            /*
             float proportion_completed = (timer / max_jump_time);
             Vector2 force_in_this_frame = Vector2.Lerp(Vector2.up*2, Vector2.zero, proportion_completed);
             rb.AddForce(force_in_this_frame, ForceMode2D.Impulse);
+            */
             timer += Time.deltaTime;
             yield return null;
         }
+        // restore normal gravity
         jumping = false;
     }
 }
