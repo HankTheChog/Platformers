@@ -1,171 +1,186 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-// I would like that after running for a while, jumps are longer, and after running for short distance jumps are shorter.
-//   this means track time in which horizontal axis is the same, and adjust jump accordingly.
-//   right now, it doesn't work right.
-//   also, when landing, do we keep the momentum for the next jump ?
+public class Player : MonoBehaviour {
 
-// todo: forces should be multiplied by mass (in case I ever want to change the mass)
 
-// IsGrounded possibilities:
-// cast capsule/box downwards (as wide as the player)
-// Use a trigger collider as the feet of the player, and update in OnTriggerEnter2D OnTriggerExit2D 
-//  grounded = Physics2D.OverlapArea(top_left.position, bottom_right.position, ground_layers);
-// 2D character controller
+    public enum PlayerType { RED, BLUE, NUM_OF_PLAYERS };
 
-namespace Assets.Scripts
-{
-    public class Player : MonoBehaviour
+    public PlayerType WhoAmI;
+
+    public LayerMask can_walk_on;
+
+    
+
+    private Rigidbody2D rb;
+    private Transform body;
+    private PlayerBodyScript body_script;
+
+    private float initial_jump_speed;
+    private bool jump_button_pressed = false;
+    private bool jump_button_was_pressed = false;
+    private bool jumping = false;
+    private bool grounded;
+    private bool is_platform_mode = false;
+    private string horizontal, vertical, platformize;
+    private int original_layer;
+    void Awake()
     {
-        [SerializeField]
-        private float jump_force;
-
-        [SerializeField]
-        private float walk_force;
-
-        [SerializeField]
-        private float rope_swing_force;
-
-        [SerializeField]
-        private float max_walk_speed;
-
-        [SerializeField]
-        private float climbing_speed_factor;
-
-        [SerializeField]
-        private GameObject other_player;
-
-
-        protected string horizontal_axis;
-        protected string vertical_axis;
-        protected string transform_button;
-
-        protected bool is_platform_mode;
-
-        protected Rigidbody2D rb;
-
-        // everything about jumps
-        protected bool jump_button_pressed;
-        protected bool jumping = false;
-        protected bool grounded;
-        public float max_jump_time = 0.2f;
-
-        public void Initialize(string horizontal, string vertical, string trans)
-        {
-            grounded = true;
-            is_platform_mode = false;
-            rb = GetComponent<Rigidbody2D>();
-            this.horizontal_axis = horizontal;
-            this.vertical_axis = vertical;
-            this.transform_button = trans;
-        }
-
-        private void Update()
-        {
-            jump_button_pressed = Input.GetKeyDown("Up");
-                //Input.GetAxisRaw(vertical_axis) == 1;
-
-            if (jump_button_pressed && !jumping && grounded)
-            {
-                StartCoroutine(Jump());
-            }
-
-            if (Input.GetButtonDown(transform_button))
-            {
-                is_platform_mode = !is_platform_mode;
-                TurnIntoPlatform();
-            }
-        }
-
-
-        private void TurnIntoPlatform()
-        {
-            Vector3 scale = transform.localScale;
-            if (is_platform_mode)
-            {
-                scale.x = 12;
-                rb.isKinematic = true;
-                gameObject.layer = 8;
-            }
-            else
-            {
-                scale.x = 3;
-                rb.isKinematic = false;
-                gameObject.layer = 9;
-            }
-            transform.localScale = scale;
-        }
-
-        private void FixedUpdate()
-        {
-            float h = Input.GetAxisRaw(horizontal_axis);
-            float v = Input.GetAxisRaw(vertical_axis);
-
-            if (grounded)
-            {
-                rb.AddForce(Vector2.right * h * walk_force, ForceMode2D.Impulse);
-
-                if (Mathf.Abs(rb.velocity.x) > max_walk_speed)
-                {
-                    Vector2 new_speed = rb.velocity;
-                    new_speed.x = Mathf.Clamp(rb.velocity.x, -max_walk_speed, max_walk_speed);
-                    rb.velocity = new_speed;
-                }
-            }
-
-            if (Rope.is_active)
-            {
-                // swinging from rope
-                if (h != 0)
-                {
-                    Vector2 to_other = (other_player.transform.position - transform.position).normalized;
-                    Vector2 clockwise_rotate = new Vector2(to_other.y, -to_other.x);
-                    rb.AddForce(h * rope_swing_force * clockwise_rotate);
-                }
-                // climbing up and down
-                if (!grounded && v != 0)
-                {
-                    Rope.rope_length = Mathf.Clamp(Rope.rope_length - climbing_speed_factor * v, 1, 5);
-                }
-            }
-        }
-
-        void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.gameObject.tag=="platform")
-            {
-                grounded = true;
-            }
-        }
-
-
-        // I copied this from : http://gamasutra.com/blogs/DanielFineberg/20150825/244650/Designing_a_Jump_in_Unity.php
-        IEnumerator Jump()
-        {
-            float timer = 0f;
-            jumping = true;
-            grounded = false;
-
-            /*
-            rb.velocity = Vector2.zero;
-            // since we zeroed the velocity, we need to restore sideways velocity to the player.
-            // todo: the maximum force should be relevant to the walk velocity before the jump.
-            // maybe I can also add it to the loop, adjusting in small steps...
-            Vector2 horiz_force = Vector2.Lerp(Vector2.zero, Vector2.right, (seconds_running_in_same_direction / running_time_until_longest_jump));
-            rb.AddForce(Input.GetAxisRaw(horizontal_axis) * horiz_force * 5, ForceMode2D.Impulse);
-            */
-
-            while (jump_button_pressed && timer < max_jump_time)
-            {
-                float proportion_completed = (timer / max_jump_time);
-                Vector2 force_in_this_frame = Vector2.Lerp(Vector2.up, Vector2.zero, proportion_completed);
-                rb.AddForce(force_in_this_frame, ForceMode2D.Impulse);
-                timer += Time.deltaTime;
-                yield return null;
-            }
-            jumping = false;
-        }
-
+        rb = GetComponent<Rigidbody2D>();
+        body = transform.GetChild(0);
+        body_script = body.GetComponent<PlayerBodyScript>();
+        original_layer = gameObject.layer;
     }
+
+    // Use this for initialization
+    void Start () {
+        if (WhoAmI == PlayerType.RED)
+        {
+            horizontal = "RedHorizontal";
+            vertical = "RedVertical";
+            platformize = "RedTransform";
+        }
+        else
+        {
+            horizontal = "BlueHorizontal";
+            vertical = "BlueVertical";
+            platformize = "BlueTransform";
+        }
+        UpdateJumpParameters();
+    }
+
+    public void UpdateJumpParameters()
+    {
+        //todo: instead of changing global gravity, change local gravity scale
+        //      or recalculate every jump (this way it's updated in game mode also)
+        // this also changes friction, which is bad !
+        Physics2D.gravity = Vector3.down * 2 * GameParameters.max_jump_height / (GameParameters.max_jump_time * GameParameters.max_jump_time);
+        initial_jump_speed = -Physics2D.gravity.y * GameParameters.max_jump_time;
+    }
+
+    void FixedUpdate()
+    {
+        float max_walk_speed = GameParameters.max_walk_speed;
+        float max_air_horizontal_speed = GameParameters.max_air_horizontal_speed;
+
+        float h = Input.GetAxisRaw(horizontal);
+        grounded = body_script.IsGrounded();
+
+        if (grounded)
+        {
+            if (h * rb.velocity.x < max_walk_speed)
+                rb.AddForce(Vector2.right * h * GameParameters.walking_accel);
+
+            if (Mathf.Abs(rb.velocity.x) > max_walk_speed)
+                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_walk_speed, rb.velocity.y);
+        }
+        else
+        {
+            if (h * rb.velocity.x < max_air_horizontal_speed)
+                rb.AddForce(Vector2.right * h * GameParameters.air_travel_accel);
+
+            if (Mathf.Abs(rb.velocity.x) > max_air_horizontal_speed)
+                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_air_horizontal_speed, rb.velocity.y);
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (InGameMenu.paused)
+        {
+            return; // we don't process any input if game is paused
+        }
+
+        float v = Input.GetAxisRaw(vertical);
+        jump_button_pressed = (v == 1);
+
+        if (jump_button_pressed && !jump_button_was_pressed && grounded && !jumping && !is_platform_mode)
+        {
+            StartCoroutine(Jump());
+        }
+
+        if (Input.GetButtonDown(platformize))
+        {
+            TurnIntoPlatformOrBack();
+        }
+
+        jump_button_was_pressed = jump_button_pressed;
+    }
+
+    private void TurnIntoPlatformOrBack()
+    {
+        is_platform_mode = !is_platform_mode;
+
+        Vector3 scale = body.localScale;
+        if (is_platform_mode)
+        {
+            scale.x = 3; // enlarging the player horizontally
+            rb.isKinematic = true; // gravity won't apply if we're kinematic
+            gameObject.layer = 8; // this makes the player be in the "platform" layer, so the other player can jump off it
+        }
+        else
+        {
+            scale.x = 1;
+            rb.isKinematic = false;
+            gameObject.layer = original_layer;
+        }
+        body.localScale = scale;
+    }
+
+    public void EnteredAntiMagnet()
+    {
+        MagneticForce.deactivate();
+        if (MagneticForce.IsActive())
+        {
+            rb.velocity = Vector2.zero;
+        }
+    }
+    public void LeavingAntiMagnet()
+    {
+        MagneticForce.reactivate();
+        MagneticForce.Cooldown();
+    }
+    public void HitSpikes()
+    {
+        Destroy(this.gameObject);
+    }
+
+    IEnumerator Jump()
+    {
+        float timer = 0f;
+        jumping = true;
+        Vector2 v = rb.velocity;
+        v.y += initial_jump_speed;
+        rb.velocity = v;
+
+        while (jump_button_pressed && timer < GameParameters.max_jump_time)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        jumping = false;
+    }
+
+
+
+    public void OnDrawGizmos()
+    {
+        float max_jump_dist = GameParameters.max_jump_time * 2 * GameParameters.max_walk_speed;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, GameParameters.magnet_radius);
+
+        Gizmos.color = Color.white;
+
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * max_jump_dist);
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.left * max_jump_dist);
+
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.up * GameParameters.max_jump_height);
+
+        Vector3 half_point_right = transform.position + Vector3.right * max_jump_dist / 2;
+        Vector3 half_point_left = transform.position + Vector3.left * max_jump_dist / 2;
+        Gizmos.DrawLine(half_point_right, half_point_right + Vector3.up * GameParameters.max_jump_height);
+        Gizmos.DrawLine(half_point_left, half_point_left + Vector3.up * GameParameters.max_jump_height);
+    }
+
 }

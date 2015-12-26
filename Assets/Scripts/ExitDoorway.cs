@@ -12,7 +12,7 @@ public class ExitDoorway : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        int n = (int)BasicPlayerScript.PlayerType.NUM_OF_PLAYERS;
+        int n = (int)Player.PlayerType.NUM_OF_PLAYERS;
         touching = new bool[n];
         for (int i = 0; i < n; i++)
             touching[i] = false;
@@ -32,12 +32,12 @@ public class ExitDoorway : MonoBehaviour {
         SceneManager.LoadScene(target_level);
     }
 
-    public void PlayerTouching(BasicPlayerScript.PlayerType who)
+    public void PlayerTouching(Player.PlayerType who)
     {
         touching[(int)who] = true;
     }
 
-    public void PlayerLeaving(BasicPlayerScript.PlayerType who)
+    public void PlayerLeaving(Player.PlayerType who)
     {
         touching[(int)who] = false;
 
