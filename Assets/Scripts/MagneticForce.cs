@@ -59,7 +59,7 @@ public class MagneticForce : MonoBehaviour {
             */
             if (distance < GameParameters.magnet_radius[1])
             {
-                red.GetComponent<Rigidbody2D>().AddForce(final_force_on_red);
+                //red.GetComponent<Rigidbody2D>().AddForce(final_force_on_red);
                 blue.GetComponent<Rigidbody2D>().AddForce(-final_force_on_red);
             }
         }

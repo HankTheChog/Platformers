@@ -8,44 +8,72 @@ public class Player : MonoBehaviour {
 
     public PlayerType WhoAmI;
 
-    public LayerMask can_walk_on;
-
+    public LayerMask can_jump_off;
     
 
     private Rigidbody2D rb;
     private Transform body;
     private PlayerBodyScript body_script;
+    private GameObject other_player;
+    private Player other_player_script;
+    private Rigidbody2D other_player_rb;
 
-    private float initial_jump_speed;
+    //   Magnet related
+    private float time_for_full_magnet_power = 4f;
+    private bool I_am_being_pulled_by_magnet;
+    private bool I_am_pulling_with_magnet;
+        private bool in_anti_magnet_field;
+    private float start_time_for_magnet;
+    private bool on_cooldown = false;
+    private float magnet_cooldown_time = 2f;
+
+    // Jump related
     private bool jump_button_pressed = false;
     private bool jump_button_was_pressed = false;
     private bool jumping = false;
     private bool grounded;
-    private bool is_platform_mode = false;
-    private string horizontal, vertical, platformize;
-    private int original_layer;
+
+    // Platform mode
+    private bool in_platform_mode = false;
+
+    // Input buttons
+    private string horizontal, vertical, platformize, magnet_button;
+
     void Awake()
     {
+        /*
         rb = GetComponent<Rigidbody2D>();
         body = transform.GetChild(0);
         body_script = body.GetComponent<PlayerBodyScript>();
-        original_layer = gameObject.layer;
+        */
     }
 
     // Use this for initialization
     void Start () {
+
+        rb = GetComponent<Rigidbody2D>();
+        body = transform.GetChild(0);
+        body_script = body.GetComponent<PlayerBodyScript>();
+
         if (WhoAmI == PlayerType.RED)
         {
             horizontal = "RedHorizontal";
             vertical = "RedVertical";
             platformize = "RedTransform";
+            magnet_button = "RedMagnet";
+            other_player = GameObject.Find("Blue player");
         }
         else
         {
             horizontal = "BlueHorizontal";
             vertical = "BlueVertical";
             platformize = "BlueTransform";
+            magnet_button = "BlueMagnet";
+            other_player = GameObject.Find("Red player");
         }
+        transform.GetChild(1).GetComponent<Aura>().SetMagnetButton(magnet_button);
+        other_player_script = other_player.GetComponent<Player>();
+        other_player_rb = other_player.GetComponent<Rigidbody2D>();
         UpdateJumpParameters();
     }
 
@@ -54,8 +82,10 @@ public class Player : MonoBehaviour {
         //todo: instead of changing global gravity, change local gravity scale
         //      or recalculate every jump (this way it's updated in game mode also)
         // this also changes friction, which is bad !
+        //todo: changing gravity shouldn't be done here, it should be part of GameParameters.
+        // also, initial_jump_speed should be recalculated every jump
         Physics2D.gravity = Vector3.down * 2 * GameParameters.max_jump_height / (GameParameters.max_jump_time * GameParameters.max_jump_time);
-        initial_jump_speed = -Physics2D.gravity.y * GameParameters.max_jump_time;
+        
     }
 
     void FixedUpdate()
@@ -76,11 +106,29 @@ public class Player : MonoBehaviour {
         }
         else
         {
-            if (h * rb.velocity.x < max_air_horizontal_speed)
-                rb.AddForce(Vector2.right * h * GameParameters.air_travel_accel);
+            if (!I_am_being_pulled_by_magnet)
+            {
+                if (h * rb.velocity.x < max_air_horizontal_speed)
+                    rb.AddForce(Vector2.right * h * GameParameters.air_travel_accel);
 
-            if (Mathf.Abs(rb.velocity.x) > max_air_horizontal_speed)
-                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_air_horizontal_speed, rb.velocity.y);
+                if (Mathf.Abs(rb.velocity.x) > max_air_horizontal_speed)
+                    rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_air_horizontal_speed, rb.velocity.y);
+            }
+        }
+
+        if (I_am_pulling_with_magnet && MagnetAllowed())
+        {
+            Debug.Log("Applying force");
+            Vector3 from_him_to_me = (transform.position - other_player.transform.position);
+            float distance = from_him_to_me.magnitude;
+
+            float start_force = Physics2D.gravity.magnitude;
+            float final_force = start_force * 1.4f;
+
+            float time_since_activation = (Time.time - start_time_for_magnet);
+            float force_now = Mathf.Lerp(start_force, final_force, time_since_activation / time_for_full_magnet_power);
+
+            other_player_rb.AddForce(from_him_to_me.normalized * force_now);
         }
     }
 
@@ -94,9 +142,25 @@ public class Player : MonoBehaviour {
         float v = Input.GetAxisRaw(vertical);
         jump_button_pressed = (v == 1);
 
-        if (jump_button_pressed && !jump_button_was_pressed && grounded && !jumping && !is_platform_mode)
+        if (jump_button_pressed && !jump_button_was_pressed && grounded && !jumping && !in_platform_mode)
         {
             StartCoroutine(Jump());
+        }
+
+        bool magnet_button_state = Input.GetButton(magnet_button);
+        // If starting to pull
+
+        if (I_am_pulling_with_magnet == false && magnet_button_state && MagnetAllowed())
+        {
+            I_am_pulling_with_magnet = true;
+            other_player_script.NotifyAboutMagnet(true);
+            start_time_for_magnet = Time.time;
+        }
+        // If pulling, and letting go of the key (or have to cancel magnet for some reason)
+        if (I_am_pulling_with_magnet && (magnet_button_state == false || MagnetAllowed()==false))
+        {
+            I_am_pulling_with_magnet = false;
+            other_player_script.NotifyAboutMagnet(false);
         }
 
         if (Input.GetButtonDown(platformize))
@@ -109,45 +173,84 @@ public class Player : MonoBehaviour {
 
     private void TurnIntoPlatformOrBack()
     {
-        is_platform_mode = !is_platform_mode;
+        in_platform_mode = !in_platform_mode;
 
         Vector3 scale = body.localScale;
-        if (is_platform_mode)
+        if (in_platform_mode)
         {
             scale.x = 3; // enlarging the player horizontally
             rb.isKinematic = true; // gravity won't apply if we're kinematic
-            gameObject.layer = 8; // this makes the player be in the "platform" layer, so the other player can jump off it
         }
         else
         {
             scale.x = 1;
             rb.isKinematic = false;
-            gameObject.layer = original_layer;
         }
         body.localScale = scale;
     }
 
     public void EnteredAntiMagnet()
     {
-        MagneticForce.deactivate();
-        if (MagneticForce.IsActive())
+        in_anti_magnet_field = true;
+        I_am_pulling_with_magnet = false;
+        if (I_am_being_pulled_by_magnet)
         {
             rb.velocity = Vector2.zero;
         }
+        I_am_being_pulled_by_magnet = false;
     }
     public void LeavingAntiMagnet()
     {
-        MagneticForce.reactivate();
-        MagneticForce.Cooldown();
+        in_anti_magnet_field = false;
+        StartCoroutine(CooldownMagnet());
     }
+    public bool CanBeAffectedByMagnet()
+    {
+        // I can also return true based on WhoAmI
+        return !in_anti_magnet_field && !in_platform_mode;
+    }
+    public bool CanTriggerMagnet()
+    {
+        return !in_anti_magnet_field && !on_cooldown;
+    }
+    public bool MagnetAllowed()
+    {
+        if (other_player)
+        {
+            float distance = (transform.position - other_player.transform.position).magnitude;
+            return (CanTriggerMagnet() && other_player_script.CanBeAffectedByMagnet() && distance < GameParameters.magnet_radius[1]);
+        }
+        // else, other player is dead... :-(
+        return false;
+    }
+    public void NotifyAboutMagnet(bool state)
+    {
+        I_am_being_pulled_by_magnet = state;
+    }
+
+
+
+
     public void HitSpikes()
     {
         Destroy(this.gameObject);
     }
 
+    IEnumerator CooldownMagnet()
+    {
+        float end_time = Time.time + magnet_cooldown_time;
+        on_cooldown = true;
+        while (Time.time < end_time)
+        {
+            yield return null;
+        }
+        on_cooldown = false;
+    }
     IEnumerator Jump()
     {
         float timer = 0f;
+        float initial_jump_speed = -Physics2D.gravity.y * GameParameters.max_jump_time; // this is the speed needed to get to max_jump_height
+
         jumping = true;
         Vector2 v = rb.velocity;
         v.y += initial_jump_speed;
