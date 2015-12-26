@@ -168,7 +168,7 @@ public class Player : MonoBehaviour {
         float max_jump_dist = GameParameters.max_jump_time * 2 * GameParameters.max_walk_speed;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, GameParameters.magnet_radius);
+        Gizmos.DrawWireSphere(transform.position, GameParameters.magnet_radius[GameParameters.magnet_radius.Length-1]);
 
         Gizmos.color = Color.white;
 

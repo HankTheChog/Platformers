@@ -14,7 +14,7 @@ public class GameParameters : MonoBehaviour {
 
     static public float min_jump_height = 3f;
 
-    static public float magnet_radius = 4f;
+    static public float[] magnet_radius = { 2f, 4f };
 
     // Use this for initialization
     void Start () {

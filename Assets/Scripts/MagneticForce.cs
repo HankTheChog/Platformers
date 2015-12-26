@@ -9,10 +9,13 @@ public class MagneticForce : MonoBehaviour {
     [SerializeField]
     public float cooldown_time = 2f;
 
+    public float time_for_full_power = 4f;
+
     private static bool deactivated = false;
     private static bool on_cooldown = false;
     private static bool magnet_button_pressed = false;
     private static float start_cooldown_time;
+    private static float activated_magnet_time;
 
     private GameObject red;
     private GameObject blue;
@@ -34,12 +37,30 @@ public class MagneticForce : MonoBehaviour {
             Vector3 red_to_blue = (blue.transform.position - red.transform.position);
             float distance = red_to_blue.magnitude;
 
-            if (distance < GameParameters.magnet_radius)
-            {
-                Vector3 force_on_red = force_constant * red_to_blue.normalized;
+            Vector3 start_force_on_red = Physics2D.gravity.magnitude * red_to_blue.normalized;
+            Vector3 final_force_on_red = start_force_on_red * 1.4f;
 
-                red.GetComponent<Rigidbody2D>().AddForce(force_on_red);
-                blue.GetComponent<Rigidbody2D>().AddForce(-force_on_red);
+            float time_since_activation = (Time.time - activated_magnet_time);
+            Vector3 final_force = Vector3.Lerp(start_force_on_red, final_force_on_red, time_since_activation / time_for_full_power);
+            // we add the magnet force X times, where X is the number of radius the players are in.
+            /*
+            
+            int n = 0;
+            foreach (float radius in GameParameters.magnet_radius)
+            {
+                if (distance < radius)
+                {
+                    n++;
+                }
+            }
+            
+            red.GetComponent<Rigidbody2D>().AddForce(force_on_red * n);
+            blue.GetComponent<Rigidbody2D>().AddForce(-force_on_red * n);
+            */
+            if (distance < GameParameters.magnet_radius[1])
+            {
+                red.GetComponent<Rigidbody2D>().AddForce(final_force_on_red);
+                blue.GetComponent<Rigidbody2D>().AddForce(-final_force_on_red);
             }
         }
     }
@@ -51,7 +72,20 @@ public class MagneticForce : MonoBehaviour {
         {
             return; // we don't process any input if game is paused
         }
-        magnet_button_pressed = Input.GetButton("ToggleRope");
+        bool button_state = Input.GetButton("ToggleRope");
+        if (!magnet_button_pressed && button_state)
+        {
+            activated_magnet_time = Time.time;
+
+            Vector3 red_to_blue = (blue.transform.position - red.transform.position);
+            float distance = red_to_blue.magnitude;
+            if (distance < GameParameters.magnet_radius[1])
+            {
+                red.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                blue.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
+        };
+        magnet_button_pressed = button_state;
     }
 
     public static bool IsActive()

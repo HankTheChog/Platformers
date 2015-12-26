@@ -17,6 +17,11 @@ public class MyCustomInspector : Editor
         GameParameters.max_jump_height = EditorGUILayout.FloatField("Jump Maximum Height", GameParameters.max_jump_height);
         GameParameters.max_jump_time = EditorGUILayout.FloatField("Time of highest jump", GameParameters.max_jump_time);
         GameParameters.min_jump_height = EditorGUILayout.FloatField("Time of shortest jump", GameParameters.min_jump_height);
-        GameParameters.magnet_radius = EditorGUILayout.FloatField("Magnet radius", GameParameters.magnet_radius);
+
+        for(int i = 0;  i <GameParameters.magnet_radius.Length; i++)
+        {
+            string s = "Magnet radius " + i.ToString();
+            GameParameters.magnet_radius[i] = EditorGUILayout.FloatField(s, GameParameters.magnet_radius[i]);
+        }
     }
 }
