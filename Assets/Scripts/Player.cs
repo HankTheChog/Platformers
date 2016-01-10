@@ -65,18 +65,6 @@ public class Player : MonoBehaviour {
         transform.GetChild(1).GetComponent<Aura>().SetMagnetButton(magnet_button);
         other_player_script = other_player.GetComponent<Player>();
         other_player_rb = other_player.GetComponent<Rigidbody2D>();
-        UpdateJumpParameters();
-    }
-
-    public void UpdateJumpParameters()
-    {
-        //todo: instead of changing global gravity, change local gravity scale
-        //      or recalculate every jump (this way it's updated in game mode also)
-        // this also changes friction, which is bad !
-        //todo: changing gravity shouldn't be done here, it should be part of GameParameters.
-        // also, initial_jump_speed should be recalculated every jump
-        Physics2D.gravity = Vector3.down * 2 * GameParameters.max_jump_height / (GameParameters.max_jump_time * GameParameters.max_jump_time);
-        
     }
 
     void FixedUpdate()
@@ -209,7 +197,7 @@ public class Player : MonoBehaviour {
         if (other_player)
         {
             float distance = (transform.position - other_player.transform.position).magnitude;
-            return (CanTriggerMagnet() && other_player_script.CanBeAffectedByMagnet() && distance < GameParameters.magnet_radius[1]);
+            return (CanTriggerMagnet() && other_player_script.CanBeAffectedByMagnet() && distance < GameParameters.magnet_radius);
         }
         // else, other player is dead... :-(
         return false;
@@ -237,11 +225,41 @@ public class Player : MonoBehaviour {
         }
         on_cooldown = false;
     }
+
+
+    /*
+    To adjust for variable height jumps:
+    a variable height jump is 2 parts
+    1) we give player initial speed V1, keep it constant for T1 time (as long as jump key is pressed)
+    2) we stop pushing the player, letting gravity take over.
+
+    V1 is calculated to get us to minimum desired jump height.
+    Gravity is calculated to get us from H' (smallest jump) to H'' (highest jump).
+    
+    In this format we don't get to set the fall time.
+
+    How to do phase 1.
+    easiest solution, keep the speed constant.
+    more fluid solution, apply initial impulse force (enough to get us to H'), and while we're not in H' (and jump key is pressed)
+    we keep applying force (which should diminish, use Lerp).
+    In this case, the initial impulse force can easily be calculated assuming it should get us to H'.
+    from physics:
+        Total_Force * Total_time = m * delta_Velocity
+
+    total_force = integral (T1) { initial_force * t'/T1 dt } = initial_force * T1 / 2
+    initial_force = enough to get us to H'
+    delta_velocity = velocity we need in H' to carry us to H'' under given gravity.
+    total_time = the time for applying the force can be calculated from above.
+    */
     IEnumerator Jump()
     {
-        float timer = 0f;
+        //todo: instead of changing global gravity, change local gravity scale
+        //      or recalculate every jump (this way it's updated in game mode also)
+        // this also changes friction, which is bad !
+        Physics2D.gravity = Vector3.down * 2 * GameParameters.max_jump_height / (GameParameters.max_jump_time * GameParameters.max_jump_time);
         float initial_jump_speed = -Physics2D.gravity.y * GameParameters.max_jump_time; // this is the speed needed to get to max_jump_height
 
+        float timer = 0f;
         jumping = true;
         Vector2 v = rb.velocity;
         v.y += initial_jump_speed;
@@ -262,7 +280,7 @@ public class Player : MonoBehaviour {
         float max_jump_dist = GameParameters.max_jump_time * 2 * GameParameters.max_walk_speed;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, GameParameters.magnet_radius[GameParameters.magnet_radius.Length-1]);
+        Gizmos.DrawWireSphere(transform.position, GameParameters.magnet_radius);
 
         Gizmos.color = Color.white;
 
