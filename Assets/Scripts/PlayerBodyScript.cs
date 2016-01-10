@@ -12,7 +12,7 @@ public class PlayerBodyScript : MonoBehaviour {
 	void Start () {
         parent_script = transform.parent.GetComponent<Player>();
         dist_to_ground = GetComponent<PolygonCollider2D>().bounds.extents.y;
-        size_self = GetComponent<PolygonCollider2D>().bounds.size;
+        size_self = GetComponent<PolygonCollider2D>().bounds.extents;
     }
 	
 	// Update is called once per frame
@@ -22,7 +22,7 @@ public class PlayerBodyScript : MonoBehaviour {
 
     public bool IsGrounded()
     {
-        return Physics2D.BoxCast(transform.position, size_self, 0, Vector2.down, dist_to_ground, parent_script.can_jump_off.value);
+        return Physics2D.BoxCast(transform.position, size_self, 0, Vector2.down, 0.55f * dist_to_ground, parent_script.can_jump_off.value);
     }
 
     void OnCollisionEnter2D(Collision2D col)

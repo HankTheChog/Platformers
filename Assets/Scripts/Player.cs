@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
     private float time_for_full_magnet_power = 4f;
     private bool I_am_being_pulled_by_magnet;
     private bool I_am_pulling_with_magnet;
-        private bool in_anti_magnet_field;
+    private bool in_anti_magnet_field;
     private float start_time_for_magnet;
     private bool on_cooldown = false;
     private float magnet_cooldown_time = 2f;
@@ -38,15 +38,6 @@ public class Player : MonoBehaviour {
 
     // Input buttons
     private string horizontal, vertical, platformize, magnet_button;
-
-    void Awake()
-    {
-        /*
-        rb = GetComponent<Rigidbody2D>();
-        body = transform.GetChild(0);
-        body_script = body.GetComponent<PlayerBodyScript>();
-        */
-    }
 
     // Use this for initialization
     void Start () {
