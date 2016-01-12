@@ -99,7 +99,7 @@ public class Player : MonoBehaviour {
         {
             Debug.Log("Applying force");
             Vector3 from_him_to_me = (transform.position - other_player.transform.position);
-            float distance = from_him_to_me.magnitude;
+            //float distance = from_him_to_me.magnitude;
 
             float start_force = Physics2D.gravity.magnitude;
             float final_force = start_force * 1.4f;
