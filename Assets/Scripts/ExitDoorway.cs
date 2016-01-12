@@ -51,7 +51,7 @@ public class ExitDoorway : MonoBehaviour, IWinCondition
         }
 	}
 
-    public bool WinConditionSatisfied()
+    bool IWinCondition.WinConditionSatisfied()
     {
         return win_condition;
     }

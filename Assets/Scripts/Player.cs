@@ -97,7 +97,6 @@ public class Player : MonoBehaviour {
 
         if (I_am_pulling_with_magnet && MagnetAllowed())
         {
-            Debug.Log("Applying force");
             Vector3 from_him_to_me = (transform.position - other_player.transform.position);
             //float distance = from_him_to_me.magnitude;
 
