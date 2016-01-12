@@ -26,7 +26,7 @@ public class MyCustomInspector : Editor
         EditorGUILayout.Space();
 
         P._magnet_radius = EditorGUILayout.FloatField("Magnet radius", P._magnet_radius);
-        P._magnet_cooldown_time = EditorGUILayout.FloatField("Magnet radius", P._magnet_cooldown_time);
-        P._time_for_full_magnet_power = EditorGUILayout.FloatField("Magnet radius", P._time_for_full_magnet_power);
+        P._magnet_cooldown_time = EditorGUILayout.FloatField("Magnet cooldown time", P._magnet_cooldown_time);
+        P._time_for_full_magnet_power = EditorGUILayout.FloatField("Time for full magnet power", P._time_for_full_magnet_power);
     }
 }
