@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour {
 
@@ -39,8 +40,9 @@ public class InGameMenu : MonoBehaviour {
     public void Button_RestartLevel()
     {
         Resume();
-        Application.LoadLevel(Application.loadedLevelName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
     public void Button_Quit()
     {
         Application.Quit();

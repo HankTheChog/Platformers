@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
@@ -15,11 +16,11 @@ public class MainMenu : MonoBehaviour {
 
     public void StartGameButton()
     {
-        Globals.load_level(1);
+        SceneManager.LoadScene(1);
     }
     public void StartTutorialButton()
     {
-        Globals.load_level(1);
+        SceneManager.LoadScene(1);
     }
     public void QuitButton()
     {

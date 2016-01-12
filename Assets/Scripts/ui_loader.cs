@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ui_loader : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Application.LoadLevelAdditive("ui");
+        SceneManager.LoadScene("ui", LoadSceneMode.Additive);
 	}
 	
 	// Update is called once per frame
