@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
     private bool jump_button_pressed = false;
     private bool jump_button_was_pressed = false;
     private bool jumping = false;
-    private bool grounded;
+    private bool grounded = true;
 
     // Platform mode
     private bool in_platform_mode = false;
