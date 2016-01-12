@@ -8,7 +8,7 @@ public class Aura : MonoBehaviour {
     private Color magnet_is_on_color;
     private string magnet_button;
     private bool magnet_is_on;
-
+    private float scale_to_match_magnet_radius;
 	// Use this for initialization
 	void Start () {
         sprite_size = this.gameObject.GetComponent<SpriteRenderer>().bounds.extents;
@@ -16,8 +16,8 @@ public class Aura : MonoBehaviour {
         magnet_is_on_color = original_color;
         magnet_is_on_color.a = 0.9f;
 
-        float scale_factor = (GameParameters.magnet_radius / sprite_size.x);
-        transform.localScale = new Vector3(scale_factor, scale_factor, scale_factor);
+        scale_to_match_magnet_radius = (GameParameters.magnet_radius / sprite_size.x);
+        transform.localScale = new Vector3(scale_to_match_magnet_radius, scale_to_match_magnet_radius, 1.0f);
     }
 	
     public void SetMagnetButton(string b)
@@ -65,13 +65,23 @@ public class Aura : MonoBehaviour {
             new_color = Color.Lerp(original_color, magnet_is_on_color, (time_since_start / GameParameters.time_for_full_magnet_power));
             float ff = Mathf.Lerp(5f, 1.5f, (time_since_start / GameParameters.time_for_full_magnet_power));
             float factor = 2 * Mathf.PI * ff * (time_since_start - GameParameters.time_for_full_magnet_power);
+            float sin_f = Mathf.Sin(factor);
 
-            new_color.a *= Mathf.Clamp(1 + (0.1f * Mathf.Sin(factor)), 0f, 1f);
-            
+            new_color.a *= Mathf.Clamp(1 + (0.15f * sin_f), 0f, 1f);
+
             transform.gameObject.GetComponent<SpriteRenderer>().color = new_color;
+
+            //if (time_since_start > GameParameters.time_for_full_magnet_power)
+            {
+                // also radiate the aura size...
+                float new_s = scale_to_match_magnet_radius * (1 + 0.01f * sin_f);
+                transform.localScale = new Vector3(new_s, new_s, 1.0f);
+            }
             yield return null;
         }
         transform.gameObject.GetComponent<SpriteRenderer>().color = original_color;
+
+        transform.localScale = new Vector3(scale_to_match_magnet_radius, scale_to_match_magnet_radius, 1.0f);
     }
     
 }
