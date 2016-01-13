@@ -8,7 +8,13 @@ public class Aura : MonoBehaviour {
     private Color magnet_is_on_color;
     private string magnet_button;
     private bool magnet_is_on;
-    private float scale_to_match_magnet_radius;
+
+    private float scale_full_magnet;
+    private float scale_no_magnet;
+    private float scale_current;
+
+
+
 	// Use this for initialization
 	void Start () {
         sprite_size = this.gameObject.GetComponent<SpriteRenderer>().bounds.extents;
@@ -16,8 +22,10 @@ public class Aura : MonoBehaviour {
         magnet_is_on_color = original_color;
         magnet_is_on_color.a = 0.9f;
 
-        scale_to_match_magnet_radius = (GameParameters.magnet_radius / sprite_size.x);
-        transform.localScale = new Vector3(scale_to_match_magnet_radius, scale_to_match_magnet_radius, 1.0f);
+        scale_full_magnet = (GameParameters.magnet_radius / sprite_size.x);
+        scale_no_magnet = 0.05f; // at this size aura is completely within the player
+        scale_current = scale_no_magnet;
+        
     }
 	
     public void SetMagnetButton(string b)
@@ -36,6 +44,9 @@ public class Aura : MonoBehaviour {
             StartCoroutine(GlowEffect());
         }
         magnet_is_on = button_state_now;
+
+        float s = scale_current * (1 + 0.01f * Mathf.Sin(10f * Time.time)); // this causes the pulsing effect of the aura.
+        transform.localScale = new Vector3(s, s, 1.0f);
     }
 
     IEnumerator GlowEffect()
@@ -45,43 +56,39 @@ public class Aura : MonoBehaviour {
         while (magnet_is_on)
         {
             float time_since_start = Time.time - start_time;
-            Color new_color;
+            // uncomment the next line for color-pulsing (looks kinda ugly!)
             /*
-            // slowly rise with magnet power, then pulse
-            if (time_since_start < GameParameters.time_for_full_magnet_power)
-            {
-                new_color = Color.Lerp(original_color, magnet_is_on_color, (time_since_start / GameParameters.time_for_full_magnet_power));
-            }
-            else
-            {
-                new_color = magnet_is_on_color;
-                float factor = 2 * Mathf.PI * freq * (time_since_start - GameParameters.time_for_full_magnet_power);
-                new_color.a *= 1 + (0.05f * Mathf.Sin(factor));
-            }
-            */
-
-            // pulse & raise opaque level at the same time.
-            // pulse frequence also changes - starts fast, slows down (like it stabilizes)
+            Color new_color;
+            // pulse frequence also changes - starts fast, slows down (as if it stabilizes)
             new_color = Color.Lerp(original_color, magnet_is_on_color, (time_since_start / GameParameters.time_for_full_magnet_power));
             float ff = Mathf.Lerp(5f, 1.5f, (time_since_start / GameParameters.time_for_full_magnet_power));
             float factor = 2 * Mathf.PI * ff * (time_since_start - GameParameters.time_for_full_magnet_power);
             float sin_f = Mathf.Sin(factor);
-
             new_color.a *= Mathf.Clamp(1 + (0.15f * sin_f), 0f, 1f);
-
             transform.gameObject.GetComponent<SpriteRenderer>().color = new_color;
-
-            //if (time_since_start > GameParameters.time_for_full_magnet_power)
+            */
+             
+            if (time_since_start < GameParameters.time_for_full_magnet_power)
             {
-                // also radiate the aura size...
-                float new_s = scale_to_match_magnet_radius * (1 + 0.01f * sin_f);
-                transform.localScale = new Vector3(new_s, new_s, 1.0f);
+                // exponential interpolation - rise in 100ms to 95% of full radius
+                scale_current = scale_full_magnet*(1 - (1 / Mathf.Exp(2.9957322f * time_since_start)));
+            }
+            else
+            {
+                scale_current = scale_full_magnet;
             }
             yield return null;
         }
         transform.gameObject.GetComponent<SpriteRenderer>().color = original_color;
-
-        transform.localScale = new Vector3(scale_to_match_magnet_radius, scale_to_match_magnet_radius, 1.0f);
+        
+        // make it return slowly to normal
+        start_time = Time.time;
+        float s = scale_current;
+        while (!magnet_is_on && (Time.time - start_time) < 0.1f)
+        {
+            scale_current = Mathf.Lerp(s, scale_no_magnet, (Time.time - start_time) / 0.1f);
+            yield return null;
+        }
     }
     
 }
