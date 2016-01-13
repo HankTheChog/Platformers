@@ -12,29 +12,43 @@ public interface IWinCondition
 
 public class DungeonMaster : MonoBehaviour, IWinCondition
 {
-
+    public Transform UI_prefab;
+    private Transform UI;
     public string NextLevel;
+
+    public static bool paused;
 
     private GameObject red;
     private GameObject blue;
 	// Use this for initialization
 	void Start () {
-        SceneManager.LoadScene("ui", LoadSceneMode.Additive);
+        UI = (Transform)Instantiate(UI_prefab);
         red = GameObject.Find("Red player");
         blue = GameObject.Find("Blue player");
+        paused = false;
     }
 
-    // Update is called once per frame
-    void Update () {
+    static public void Pause()
+    {
+        paused = true;
+        Time.timeScale = 0f;
+    }
+
+    static public void Resume()
+    {
+        paused = false;
+        Time.timeScale = 1f;
+    }
+        // Update is called once per frame
+        void Update () {
         if (red == null || blue == null)
         {
             // restart level
             // todo: pause the game, show some message/fade-out/graphics, then reload
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            UI.GetComponent<InGameMenu>().RespawnLevel();
         }
 	}
-
-
+    
     bool IWinCondition.WinConditionSatisfied()
     {
         var instances = from t in Assembly.GetExecutingAssembly().GetTypes()

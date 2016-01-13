@@ -112,7 +112,7 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (InGameMenu.paused)
+        if (DungeonMaster.paused)
         {
             return; // we don't process any input if game is paused
         }
