@@ -22,7 +22,7 @@ public class PlayerBodyScript : MonoBehaviour {
 
     public bool IsGrounded()
     {
-        return Physics2D.BoxCast(transform.position, size_self, 0, Vector2.down, 0.55f * dist_to_ground, parent_script.can_jump_off.value);
+        return Physics2D.BoxCast(transform.position, size_self, 0, Vector2.down, 0.75f * dist_to_ground, parent_script.can_jump_off.value);
     }
 
     void OnCollisionEnter2D(Collision2D col)
