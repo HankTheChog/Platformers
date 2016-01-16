@@ -278,18 +278,22 @@ public class Player : MonoBehaviour {
     {
         float max_jump_dist = GameParameters.max_jump_time * 2 * GameParameters.max_walk_speed;
 
+        body = transform.GetChild(0);
+        Vector3 origin_of_lines = transform.position;
+        origin_of_lines.y -= body.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y; // move origin to bottom of player
+
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, GameParameters.magnet_radius);
+        Gizmos.DrawWireSphere(origin_of_lines, GameParameters.magnet_radius);
 
         Gizmos.color = Color.white;
 
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * max_jump_dist);
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.left * max_jump_dist);
+        Gizmos.DrawLine(origin_of_lines, origin_of_lines + Vector3.right * max_jump_dist);
+        Gizmos.DrawLine(origin_of_lines, origin_of_lines + Vector3.left * max_jump_dist);
 
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.up * GameParameters.max_jump_height);
+        Gizmos.DrawLine(origin_of_lines, origin_of_lines + Vector3.up * GameParameters.max_jump_height);
 
-        Vector3 half_point_right = transform.position + Vector3.right * max_jump_dist / 2;
-        Vector3 half_point_left = transform.position + Vector3.left * max_jump_dist / 2;
+        Vector3 half_point_right = origin_of_lines + Vector3.right * max_jump_dist / 2;
+        Vector3 half_point_left = origin_of_lines + Vector3.left * max_jump_dist / 2;
         Gizmos.DrawLine(half_point_right, half_point_right + Vector3.up * GameParameters.max_jump_height);
         Gizmos.DrawLine(half_point_left, half_point_left + Vector3.up * GameParameters.max_jump_height);
     }
