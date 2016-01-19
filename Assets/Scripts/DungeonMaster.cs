@@ -10,22 +10,54 @@ public interface IWinCondition
     bool WinConditionSatisfied();
 }
 
-public class DungeonMaster : MonoBehaviour, IWinCondition
+static public class GlobalWinCondition
+{
+    static List<IWinCondition> objects;
+    static GlobalWinCondition()
+    {
+        objects = new List<IWinCondition>();
+    }
+    static public void add(IWinCondition obj)
+    {
+        objects.Add(obj);
+    }
+    static public bool IsWinning()
+    {
+        foreach (var o in objects)
+        {
+            if (o.WinConditionSatisfied() == false)
+            {
+                return false;
+            }   
+        }
+        return true;
+    }
+
+}
+
+public class DungeonMaster : MonoBehaviour
 {
     public Transform UI_prefab;
     private Transform UI;
-    public string NextLevel;
+    public int NextLevel;
 
     public static bool paused;
 
     private GameObject red;
     private GameObject blue;
+    private IEnumerable<IWinCondition> important_objects;
+
 	// Use this for initialization
 	void Start () {
         UI = (Transform)Instantiate(UI_prefab);
         red = GameObject.Find("Red player");
         blue = GameObject.Find("Blue player");
         paused = false;
+
+        important_objects = from t in Assembly.GetExecutingAssembly().GetTypes()
+                            where t.GetInterfaces().Contains(typeof(IWinCondition))
+                                     && t.GetConstructor(System.Type.EmptyTypes) != null
+                            select System.Activator.CreateInstance(t) as IWinCondition;
     }
 
     static public void Pause()
@@ -40,30 +72,17 @@ public class DungeonMaster : MonoBehaviour, IWinCondition
         Time.timeScale = 1f;
     }
         // Update is called once per frame
-        void Update () {
+    void Update () {
         if (red == null || blue == null)
         {
             // restart level
             // todo: pause the game, show some message/fade-out/graphics, then reload
             UI.GetComponent<InGameMenu>().RespawnLevel();
         }
-	}
-    
-    bool IWinCondition.WinConditionSatisfied()
-    {
-        var instances = from t in Assembly.GetExecutingAssembly().GetTypes()
-                        where t.GetInterfaces().Contains(typeof(IWinCondition))
-                                 && t.GetConstructor(System.Type.EmptyTypes) != null
-                        select System.Activator.CreateInstance(t) as IWinCondition;
 
-        foreach (var instance in instances)
+        if (GlobalWinCondition.IsWinning())
         {
-            if (instance.WinConditionSatisfied() == false)
-            {
-                return false;
-            }
+            UI.GetComponent<InGameMenu>().MoveToLevel(NextLevel);
         }
-        return true;
-    }
-
+	}
 }

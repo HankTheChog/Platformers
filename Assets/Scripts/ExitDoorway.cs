@@ -12,10 +12,12 @@ public class ExitDoorway : MonoBehaviour, IWinCondition
 
     private bool[] touching;
     private bool win_condition;
-    public string target_level;
+    //public string target_level;
 
 	// Use this for initialization
 	void Start () {
+        GlobalWinCondition.add(this);
+
         int n = (int)Player.PlayerType.NUM_OF_PLAYERS;
         touching = new bool[n];
         for (int i = 0; i < n; i++)
@@ -51,14 +53,9 @@ public class ExitDoorway : MonoBehaviour, IWinCondition
         }
 	}
 
-    bool IWinCondition.WinConditionSatisfied()
+    public bool WinConditionSatisfied()
     {
         return win_condition;
-    }
-
-    void GoToNextLevel()
-    {
-        SceneManager.LoadScene(target_level);
     }
 
     public void PlayerTouching(Player.PlayerType who)

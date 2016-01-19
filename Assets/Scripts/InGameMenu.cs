@@ -42,7 +42,7 @@ public class InGameMenu : MonoBehaviour {
     public void Button_RestartLevel()
     {
         EnableOrDisableMenu(false);
-        StartCoroutine(FadeToBlackAndRestart());
+        StartCoroutine(FadeToBlackAndRestart(SceneManager.GetActiveScene().buildIndex));
    //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -53,11 +53,17 @@ public class InGameMenu : MonoBehaviour {
 
     public void RespawnLevel()
     {
-        StartCoroutine(FadeToBlackAndRestart());
+        StartCoroutine(FadeToBlackAndRestart(SceneManager.GetActiveScene().buildIndex));
         DungeonMaster.Pause();
     }
 
-    public IEnumerator FadeToBlackAndRestart()
+    public void MoveToLevel(int level)
+    {
+        StartCoroutine(FadeToBlackAndRestart(level));
+        DungeonMaster.Pause();
+    }
+
+    public IEnumerator FadeToBlackAndRestart(int level)
     {
         float t = Time.realtimeSinceStartup;
         while (Time.realtimeSinceStartup - t < 1)
@@ -66,7 +72,7 @@ public class InGameMenu : MonoBehaviour {
             yield return null;
         }
         DungeonMaster.Resume();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(level);
     }
 
 }
