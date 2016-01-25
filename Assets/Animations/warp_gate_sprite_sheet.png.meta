@@ -1,0 +1,1089 @@
+fileFormatVersion: 2
+guid: e55a780fe490a3149bcb381e843a0341
+timeCreated: 1453760340
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: warp_gate_sprite_sheet_0
+    21300002: warp_gate_sprite_sheet_1
+    21300004: warp_gate_sprite_sheet_2
+    21300006: warp_gate_sprite_sheet_3
+    21300008: warp_gate_sprite_sheet_4
+    21300010: warp_gate_sprite_sheet_5
+    21300012: warp_gate_sprite_sheet_6
+    21300014: warp_gate_sprite_sheet_7
+    21300016: warp_gate_sprite_sheet_8
+    21300018: warp_gate_sprite_sheet_9
+    21300020: warp_gate_sprite_sheet_10
+    21300022: warp_gate_sprite_sheet_11
+    21300024: warp_gate_sprite_sheet_12
+    21300026: warp_gate_sprite_sheet_13
+    21300028: warp_gate_sprite_sheet_14
+    21300030: warp_gate_sprite_sheet_15
+    21300032: warp_gate_sprite_sheet_16
+    21300034: warp_gate_sprite_sheet_17
+    21300036: warp_gate_sprite_sheet_18
+    21300038: warp_gate_sprite_sheet_19
+    21300040: warp_gate_sprite_sheet_20
+    21300042: warp_gate_sprite_sheet_21
+    21300044: warp_gate_sprite_sheet_22
+    21300046: warp_gate_sprite_sheet_23
+    21300048: warp_gate_sprite_sheet_24
+    21300050: warp_gate_sprite_sheet_25
+    21300052: warp_gate_sprite_sheet_26
+    21300054: warp_gate_sprite_sheet_27
+    21300056: warp_gate_sprite_sheet_28
+    21300058: warp_gate_sprite_sheet_29
+    21300060: warp_gate_sprite_sheet_30
+    21300062: warp_gate_sprite_sheet_31
+    21300064: warp_gate_sprite_sheet_32
+    21300066: warp_gate_sprite_sheet_33
+    21300068: warp_gate_sprite_sheet_34
+    21300070: warp_gate_sprite_sheet_35
+    21300072: warp_gate_sprite_sheet_36
+    21300074: warp_gate_sprite_sheet_37
+    21300076: warp_gate_sprite_sheet_38
+    21300078: warp_gate_sprite_sheet_39
+    21300080: warp_gate_sprite_sheet_40
+    21300082: warp_gate_sprite_sheet_41
+    21300084: warp_gate_sprite_sheet_42
+    21300086: warp_gate_sprite_sheet_43
+    21300088: warp_gate_sprite_sheet_44
+    21300090: warp_gate_sprite_sheet_45
+    21300092: warp_gate_sprite_sheet_46
+    21300094: warp_gate_sprite_sheet_47
+    21300096: warp_gate_sprite_sheet_48
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: warp_gate_sprite_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67.5, y: 61.899963}
+        - {x: -67.5, y: -38.100037}
+        - {x: -35.5, y: -74.10004}
+        - {x: 27.5, y: -74.10004}
+        - {x: 63.5, y: -41.100037}
+        - {x: 63.5, y: 56.899963}
+        - {x: 62.5, y: 61.899963}
+    - name: warp_gate_sprite_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54.26396, y: 61.899963}
+        - {x: -66.26396, y: 54.899963}
+        - {x: -66.26396, y: -43.100037}
+        - {x: -50.26396, y: -73.10004}
+        - {x: 50.73604, y: -73.10004}
+        - {x: 64.73604, y: -45.100037}
+        - {x: 64.73604, y: 47.899963}
+        - {x: 47.73604, y: 61.899963}
+    - name: warp_gate_sprite_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.527924, y: 61.899963}
+        - {x: -65.52792, y: 57.899963}
+        - {x: -66.52792, y: 50.899963}
+        - {x: -66.52792, y: -62.100037}
+        - {x: -43.527924, y: -73.10004}
+        - {x: 36.472076, y: -73.10004}
+        - {x: 64.47208, y: -43.100037}
+        - {x: 64.47208, y: 21.899963}
+        - {x: 50.472076, y: 61.899963}
+    - name: warp_gate_sprite_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 20.708069, y: 60.899963}
+        - {x: -43.29193, y: 60.899963}
+        - {x: -67.29193, y: 18.899963}
+        - {x: -67.29193, y: -50.100037}
+        - {x: -37.29193, y: -75.10004}
+        - {x: 56.70807, y: -75.10004}
+        - {x: 59.70807, y: -74.10004}
+        - {x: 64.70807, y: -46.100037}
+        - {x: 64.70807, y: 39.899963}
+    - name: warp_gate_sprite_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38.055847, y: 59.899963}
+        - {x: -66.05585, y: 13.899963}
+        - {x: -66.05585, y: -65.10004}
+        - {x: -65.05585, y: -72.10004}
+        - {x: -42.055847, y: -75.10004}
+        - {x: 57.944153, y: -75.10004}
+        - {x: 65.94415, y: -63.100037}
+        - {x: 65.94415, y: 25.899963}
+        - {x: 41.944153, y: 59.899963}
+    - name: warp_gate_sprite_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -37.319824, y: 58.899963}
+        - {x: -66.319824, y: 48.899963}
+        - {x: -66.319824, y: -54.100037}
+        - {x: -26.319824, y: -76.10004}
+        - {x: 39.680176, y: -76.10004}
+        - {x: 64.680176, y: -59.100037}
+        - {x: 64.680176, y: 34.899963}
+        - {x: 47.680176, y: 58.899963}
+    - name: warp_gate_sprite_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.416138, y: 59.899963}
+        - {x: 7.4161377, y: 61.899963}
+        - {x: -16.583862, y: 61.899963}
+        - {x: -48.583862, y: 59.899963}
+        - {x: -66.58386, y: 15.899963}
+        - {x: -66.58386, y: -38.100037}
+        - {x: -62.583862, y: -45.100037}
+        - {x: -19.583862, y: -75.10004}
+        - {x: 43.416138, y: -75.10004}
+        - {x: 64.41614, y: -35.100037}
+        - {x: 64.41614, y: 28.899963}
+        - {x: 49.416138, y: 47.899963}
+    - name: warp_gate_sprite_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 2107
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32.65222, y: 61.899963}
+        - {x: -55.34778, y: 61.899963}
+        - {x: -66.34778, y: 33.899963}
+        - {x: -66.34778, y: -34.100037}
+        - {x: -63.34778, y: -48.100037}
+        - {x: -19.347778, y: -75.10004}
+        - {x: 24.652222, y: -75.10004}
+        - {x: 30.652222, y: -74.10004}
+        - {x: 64.65222, y: -38.100037}
+        - {x: 64.65222, y: 39.899963}
+        - {x: 60.65222, y: 56.899963}
+    - name: warp_gate_sprite_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -53.111694, y: 59.899963}
+        - {x: -66.111694, y: 24.899963}
+        - {x: -66.111694, y: -62.100037}
+        - {x: -37.111694, y: -75.10004}
+        - {x: 42.888306, y: -75.10004}
+        - {x: 65.888306, y: -38.100037}
+        - {x: 65.888306, y: 15.899963}
+        - {x: 36.888306, y: 59.899963}
+    - name: warp_gate_sprite_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 2709
+        y: 1203.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45.375732, y: 58.899963}
+        - {x: -66.37573, y: 52.899963}
+        - {x: -66.37573, y: -75.10004}
+        - {x: -60.375732, y: -76.10004}
+        - {x: 55.624268, y: -76.10004}
+        - {x: 65.62427, y: -46.100037}
+        - {x: 65.62427, y: 40.899963}
+        - {x: 55.624268, y: 58.899963}
+    - name: warp_gate_sprite_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32.5, y: 60.844116}
+        - {x: -56.5, y: 38.844116}
+        - {x: -67.5, y: 7.844116}
+        - {x: -67.5, y: -39.155884}
+        - {x: -32.5, y: -74.15588}
+        - {x: 31.5, y: -74.15588}
+        - {x: 63.5, y: -36.155884}
+        - {x: 63.5, y: 38.844116}
+        - {x: 21.5, y: 60.844116}
+    - name: warp_gate_sprite_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15.736038, y: 60.844116}
+        - {x: -16.263962, y: 60.844116}
+        - {x: -57.26396, y: 41.844116}
+        - {x: -66.26396, y: 29.844116}
+        - {x: -66.26396, y: -42.155884}
+        - {x: -46.26396, y: -74.15588}
+        - {x: 33.73604, y: -74.15588}
+        - {x: 64.73604, y: -34.155884}
+        - {x: 64.73604, y: 22.844116}
+        - {x: 55.73604, y: 45.844116}
+    - name: warp_gate_sprite_sheet_12
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -49.527924, y: 60.844116}
+        - {x: -66.52792, y: 22.844116}
+        - {x: -66.52792, y: -48.155884}
+        - {x: -34.527924, y: -76.15588}
+        - {x: 43.472076, y: -76.15588}
+        - {x: 64.47208, y: -31.155884}
+        - {x: 64.47208, y: 32.844116}
+        - {x: 34.472076, y: 60.844116}
+    - name: warp_gate_sprite_sheet_13
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22.708069, y: 59.844116}
+        - {x: -22.291931, y: 59.844116}
+        - {x: -50.29193, y: 49.844116}
+        - {x: -65.29193, y: 15.844116}
+        - {x: -67.29193, y: 2.8441162}
+        - {x: -67.29193, y: -30.155884}
+        - {x: -55.29193, y: -60.155884}
+        - {x: -34.29193, y: -76.15588}
+        - {x: 32.70807, y: -76.15588}
+        - {x: 64.70807, y: -47.155884}
+        - {x: 64.70807, y: 20.844116}
+        - {x: 24.708069, y: 58.844116}
+    - name: warp_gate_sprite_sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.055847, y: 57.844116}
+        - {x: -59.055847, y: 24.844116}
+        - {x: -66.05585, y: 9.844116}
+        - {x: -66.05585, y: -25.155884}
+        - {x: -59.055847, y: -56.155884}
+        - {x: -34.055847, y: -76.15588}
+        - {x: 23.944153, y: -76.15588}
+        - {x: 65.94415, y: -52.155884}
+        - {x: 65.94415, y: 32.844116}
+        - {x: 26.944153, y: 57.844116}
+    - name: warp_gate_sprite_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34.319824, y: 57.844116}
+        - {x: -66.319824, y: 19.844116}
+        - {x: -66.319824, y: -60.155884}
+        - {x: -34.319824, y: -76.15588}
+        - {x: 47.680176, y: -76.15588}
+        - {x: 64.680176, y: -62.155884}
+        - {x: 64.680176, y: 35.844116}
+        - {x: 33.680176, y: 57.844116}
+    - name: warp_gate_sprite_sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 20.416138, y: 59.844116}
+        - {x: -61.583862, y: 59.844116}
+        - {x: -66.58386, y: 37.844116}
+        - {x: -66.58386, y: -59.155884}
+        - {x: -19.583862, y: -76.15588}
+        - {x: 5.4161377, y: -76.15588}
+        - {x: 52.416138, y: -71.15588}
+        - {x: 64.41614, y: -32.155884}
+        - {x: 64.41614, y: 33.844116}
+        - {x: 63.416138, y: 35.844116}
+    - name: warp_gate_sprite_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 2107
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -66.34778, y: 59.844116}
+        - {x: -66.34778, y: -61.155884}
+        - {x: -41.34778, y: -76.15588}
+        - {x: 20.652222, y: -76.15588}
+        - {x: 64.65222, y: -58.155884}
+        - {x: 64.65222, y: 29.844116}
+        - {x: 35.65222, y: 59.844116}
+    - name: warp_gate_sprite_sheet_18
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 65.888306, y: 25.844116}
+        - {x: 30.888306, y: 58.844116}
+        - {x: -36.111694, y: 58.844116}
+        - {x: -66.111694, y: 24.844116}
+        - {x: -66.111694, y: -33.155884}
+        - {x: -61.111694, y: -58.155884}
+        - {x: -18.111694, y: -76.15588}
+        - {x: 6.8883057, y: -76.15588}
+        - {x: 44.888306, y: -63.155884}
+        - {x: 64.888306, y: -44.155884}
+        - {x: 65.888306, y: -36.155884}
+    - name: warp_gate_sprite_sheet_19
+      rect:
+        serializedVersion: 2
+        x: 2709
+        y: 903.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41.375732, y: 58.844116}
+        - {x: -66.37573, y: 29.844116}
+        - {x: -66.37573, y: -33.155884}
+        - {x: -52.375732, y: -76.15588}
+        - {x: 62.624268, y: -76.15588}
+        - {x: 65.62427, y: -69.15588}
+        - {x: 65.62427, y: 31.844116}
+        - {x: 26.624268, y: 58.844116}
+    - name: warp_gate_sprite_sheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 63.5, y: 16.7883}
+        - {x: 61.5, y: 29.7883}
+        - {x: 16.5, y: 59.7883}
+        - {x: -46.5, y: 59.7883}
+        - {x: -67.5, y: 18.7883}
+        - {x: -67.5, y: -53.2117}
+        - {x: -33.5, y: -76.2117}
+        - {x: 20.5, y: -76.2117}
+        - {x: 25.5, y: -73.2117}
+        - {x: 41.5, y: -63.2117}
+        - {x: 63.5, y: -27.2117}
+    - name: warp_gate_sprite_sheet_21
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34.26396, y: 59.7883}
+        - {x: -43.26396, y: 55.7883}
+        - {x: -66.26396, y: 31.7883}
+        - {x: -66.26396, y: -37.2117}
+        - {x: -44.26396, y: -76.2117}
+        - {x: 48.73604, y: -76.2117}
+        - {x: 64.73604, y: -49.2117}
+        - {x: 64.73604, y: 36.7883}
+        - {x: 27.736038, y: 59.7883}
+    - name: warp_gate_sprite_sheet_22
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.472076, y: 59.7883}
+        - {x: -48.527924, y: 59.7883}
+        - {x: -66.52792, y: 16.7883}
+        - {x: -66.52792, y: -55.2117}
+        - {x: -33.527924, y: -77.2117}
+        - {x: 47.472076, y: -77.2117}
+        - {x: 64.47208, y: -35.2117}
+        - {x: 64.47208, y: 27.7883}
+        - {x: 50.472076, y: 38.7883}
+    - name: warp_gate_sprite_sheet_23
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55.29193, y: 57.7883}
+        - {x: -67.29193, y: 29.7883}
+        - {x: -67.29193, y: -61.2117}
+        - {x: -41.29193, y: -77.2117}
+        - {x: 23.708069, y: -77.2117}
+        - {x: 57.70807, y: -66.2117}
+        - {x: 64.70807, y: -58.2117}
+        - {x: 64.70807, y: 22.7883}
+        - {x: 45.70807, y: 57.7883}
+    - name: warp_gate_sprite_sheet_24
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34.055847, y: 57.7883}
+        - {x: -66.05585, y: 45.7883}
+        - {x: -66.05585, y: -32.2117}
+        - {x: -48.055847, y: -74.2117}
+        - {x: -33.055847, y: -77.2117}
+        - {x: 24.944153, y: -77.2117}
+        - {x: 65.94415, y: -46.2117}
+        - {x: 65.94415, y: 25.7883}
+        - {x: 49.944153, y: 57.7883}
+    - name: warp_gate_sprite_sheet_25
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.319824, y: 58.7883}
+        - {x: -66.319824, y: 40.7883}
+        - {x: -66.319824, y: -69.2117}
+        - {x: -40.319824, y: -77.2117}
+        - {x: 16.680176, y: -77.2117}
+        - {x: 57.680176, y: -59.2117}
+        - {x: 64.680176, y: -53.2117}
+        - {x: 64.680176, y: 25.7883}
+        - {x: 44.680176, y: 58.7883}
+    - name: warp_gate_sprite_sheet_26
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.583862, y: 58.7883}
+        - {x: -40.583862, y: 56.7883}
+        - {x: -66.58386, y: 11.7883}
+        - {x: -66.58386, y: -57.2117}
+        - {x: -22.583862, y: -77.2117}
+        - {x: 33.416138, y: -77.2117}
+        - {x: 64.41614, y: -65.2117}
+        - {x: 64.41614, y: 40.7883}
+        - {x: 28.416138, y: 58.7883}
+    - name: warp_gate_sprite_sheet_27
+      rect:
+        serializedVersion: 2
+        x: 2107
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -37.34778, y: 56.7883}
+        - {x: -47.34778, y: 53.7883}
+        - {x: -66.34778, y: 29.7883}
+        - {x: -66.34778, y: -48.2117}
+        - {x: -61.34778, y: -77.2117}
+        - {x: 36.65222, y: -77.2117}
+        - {x: 64.65222, y: -53.2117}
+        - {x: 64.65222, y: 23.7883}
+        - {x: 42.65222, y: 56.7883}
+    - name: warp_gate_sprite_sheet_28
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35.111694, y: 58.7883}
+        - {x: -66.111694, y: 19.7883}
+        - {x: -66.111694, y: -53.2117}
+        - {x: -34.111694, y: -77.2117}
+        - {x: 37.888306, y: -77.2117}
+        - {x: 55.888306, y: -66.2117}
+        - {x: 65.888306, y: -33.2117}
+        - {x: 65.888306, y: 24.7883}
+        - {x: 33.888306, y: 58.7883}
+    - name: warp_gate_sprite_sheet_29
+      rect:
+        serializedVersion: 2
+        x: 2709
+        y: 603.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.375732, y: 59.7883}
+        - {x: -66.37573, y: 35.7883}
+        - {x: -66.37573, y: -30.2117}
+        - {x: -45.375732, y: -76.2117}
+        - {x: 30.624268, y: -76.2117}
+        - {x: 65.62427, y: -46.2117}
+        - {x: 65.62427, y: 18.7883}
+        - {x: 47.624268, y: 59.7883}
+    - name: warp_gate_sprite_sheet_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -33.5, y: 57.732452}
+        - {x: -62.5, y: 21.732452}
+        - {x: -67.5, y: 14.732452}
+        - {x: -67.5, y: -55.267548}
+        - {x: -27.5, y: -78.26755}
+        - {x: 34.5, y: -78.26755}
+        - {x: 63.5, y: -65.26755}
+        - {x: 63.5, y: 45.732452}
+        - {x: 21.5, y: 57.732452}
+    - name: warp_gate_sprite_sheet_31
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.263962, y: 58.732452}
+        - {x: -66.26396, y: 42.732452}
+        - {x: -66.26396, y: -52.267548}
+        - {x: -62.26396, y: -69.26755}
+        - {x: -27.263962, y: -78.26755}
+        - {x: 36.73604, y: -78.26755}
+        - {x: 64.73604, y: -59.267548}
+        - {x: 64.73604, y: 34.732452}
+        - {x: 54.73604, y: 58.732452}
+    - name: warp_gate_sprite_sheet_32
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.527924, y: 59.732452}
+        - {x: -66.52792, y: 27.732452}
+        - {x: -66.52792, y: -58.267548}
+        - {x: -30.527924, y: -77.26755}
+        - {x: 62.472076, y: -77.26755}
+        - {x: 64.47208, y: -75.26755}
+        - {x: 64.47208, y: 37.732452}
+        - {x: 56.472076, y: 59.732452}
+    - name: warp_gate_sprite_sheet_33
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.708069, y: 59.732452}
+        - {x: -19.291931, y: 59.732452}
+        - {x: -54.29193, y: 50.732452}
+        - {x: -67.29193, y: 17.732452}
+        - {x: -67.29193, y: -40.267548}
+        - {x: -37.29193, y: -76.26755}
+        - {x: 32.70807, y: -76.26755}
+        - {x: 64.70807, y: -36.267548}
+        - {x: 64.70807, y: 13.732452}
+        - {x: 51.70807, y: 43.732452}
+    - name: warp_gate_sprite_sheet_34
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.055847, y: 59.732452}
+        - {x: -66.05585, y: 38.732452}
+        - {x: -66.05585, y: -30.267548}
+        - {x: -34.055847, y: -75.26755}
+        - {x: 34.944153, y: -75.26755}
+        - {x: 65.94415, y: -39.267548}
+        - {x: 65.94415, y: 27.732452}
+        - {x: 30.944153, y: 59.732452}
+    - name: warp_gate_sprite_sheet_35
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 18.680176, y: 59.732452}
+        - {x: -30.319824, y: 59.732452}
+        - {x: -54.319824, y: 54.732452}
+        - {x: -66.319824, y: 15.732452}
+        - {x: -66.319824, y: -42.267548}
+        - {x: -35.319824, y: -76.26755}
+        - {x: 37.680176, y: -76.26755}
+        - {x: 64.680176, y: -34.267548}
+        - {x: 64.680176, y: 17.732452}
+        - {x: 60.680176, y: 37.732452}
+    - name: warp_gate_sprite_sheet_36
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 36.416138, y: 56.732452}
+        - {x: -34.583862, y: 56.732452}
+        - {x: -66.58386, y: 23.732452}
+        - {x: -66.58386, y: -60.267548}
+        - {x: -16.583862, y: -78.26755}
+        - {x: 58.416138, y: -78.26755}
+        - {x: 64.41614, y: -52.267548}
+        - {x: 64.41614, y: 38.732452}
+    - name: warp_gate_sprite_sheet_37
+      rect:
+        serializedVersion: 2
+        x: 2107
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 45.65222, y: 57.732452}
+        - {x: -30.347778, y: 57.732452}
+        - {x: -66.34778, y: 19.732452}
+        - {x: -66.34778, y: -55.267548}
+        - {x: -65.34778, y: -61.267548}
+        - {x: -17.347778, y: -78.26755}
+        - {x: 21.652222, y: -78.26755}
+        - {x: 57.65222, y: -51.267548}
+        - {x: 64.65222, y: -42.267548}
+        - {x: 64.65222, y: 16.732452}
+    - name: warp_gate_sprite_sheet_38
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -53.111694, y: 59.732452}
+        - {x: -66.111694, y: 58.732452}
+        - {x: -66.111694, y: -65.26755}
+        - {x: -44.111694, y: -77.26755}
+        - {x: 49.888306, y: -77.26755}
+        - {x: 65.888306, y: -48.267548}
+        - {x: 65.888306, y: 58.732452}
+        - {x: 64.888306, y: 59.732452}
+    - name: warp_gate_sprite_sheet_39
+      rect:
+        serializedVersion: 2
+        x: 2709
+        y: 303.2
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.375732, y: 59.732452}
+        - {x: -66.37573, y: 32.732452}
+        - {x: -66.37573, y: -68.26755}
+        - {x: -39.375732, y: -76.26755}
+        - {x: 46.624268, y: -76.26755}
+        - {x: 65.62427, y: -48.267548}
+        - {x: 65.62427, y: 38.732452}
+        - {x: 21.624268, y: 59.732452}
+    - name: warp_gate_sprite_sheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3.2000122
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -43.5, y: 57.676605}
+        - {x: -67.5, y: 20.676605}
+        - {x: -67.5, y: -52.323395}
+        - {x: -42.5, y: -73.323395}
+        - {x: -19.5, y: -78.323395}
+        - {x: 27.5, y: -78.323395}
+        - {x: 63.5, y: -63.323395}
+        - {x: 63.5, y: 25.676605}
+        - {x: 53.5, y: 57.676605}
+    - name: warp_gate_sprite_sheet_41
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 3.2000122
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25.736038, y: 58.676605}
+        - {x: -43.26396, y: 58.676605}
+        - {x: -66.26396, y: 24.676605}
+        - {x: -66.26396, y: -52.323395}
+        - {x: -50.26396, y: -72.323395}
+        - {x: -29.263962, y: -78.323395}
+        - {x: 42.73604, y: -78.323395}
+        - {x: 64.73604, y: -44.323395}
+        - {x: 64.73604, y: 23.676605}
+        - {x: 40.73604, y: 50.676605}
+    - name: warp_gate_sprite_sheet_42
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 3.2000122
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -66.52792, y: -38.323395}
+        - {x: -41.527924, y: -77.323395}
+        - {x: 32.472076, y: -77.323395}
+        - {x: 64.47208, y: -60.323395}
+        - {x: 64.47208, y: 22.676605}
+        - {x: 48.472076, y: 58.676605}
+        - {x: -35.527924, y: 58.676605}
+        - {x: -66.52792, y: 31.676605}
+    - name: warp_gate_sprite_sheet_43
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 3.2000122
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16.708069, y: 58.676605}
+        - {x: -13.291931, y: 58.676605}
+        - {x: -61.29193, y: 37.676605}
+        - {x: -67.29193, y: 17.676605}
+        - {x: -67.29193, y: -30.323395}
+        - {x: -39.29193, y: -76.323395}
+        - {x: 37.70807, y: -76.323395}
+        - {x: 64.70807, y: -39.323395}
+        - {x: 64.70807, y: 21.676605}
+        - {x: 57.70807, y: 39.676605}
+    - name: warp_gate_sprite_sheet_44
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 3.2000122
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.944153, y: 58.676605}
+        - {x: -24.055847, y: 58.676605}
+        - {x: -50.055847, y: 52.676605}
+        - {x: -66.05585, y: 18.676605}
+        - {x: -66.05585, y: -51.323395}
+        - {x: -40.055847, y: -76.323395}
+        - {x: 38.944153, y: -76.323395}
+        - {x: 65.94415, y: -42.323395}
+        - {x: 65.94415, y: 23.676605}
+        - {x: 61.944153, y: 46.676605}
+    - name: warp_gate_sprite_sheet_45
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 3.2000122
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64.319824, y: 58.676605}
+        - {x: -66.319824, y: 54.676605}
+        - {x: -66.319824, y: -43.323395}
+        - {x: -48.319824, y: -77.323395}
+        - {x: 37.680176, y: -77.323395}
+        - {x: 64.680176, y: -40.323395}
+        - {x: 64.680176, y: 54.676605}
+        - {x: 33.680176, y: 58.676605}
+    - name: warp_gate_sprite_sheet_46
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 3.2000122
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.583862, y: 57.676605}
+        - {x: -65.58386, y: 27.676605}
+        - {x: -66.58386, y: 21.676605}
+        - {x: -66.58386, y: -39.323395}
+        - {x: -59.583862, y: -62.323395}
+        - {x: -22.583862, y: -78.323395}
+        - {x: 45.416138, y: -78.323395}
+        - {x: 64.41614, y: -68.323395}
+        - {x: 64.41614, y: 44.676605}
+        - {x: 62.416138, y: 57.676605}
+    - name: warp_gate_sprite_sheet_47
+      rect:
+        serializedVersion: 2
+        x: 2107
+        y: 3.2000122
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35.34778, y: 57.676605}
+        - {x: -66.34778, y: 29.676605}
+        - {x: -66.34778, y: -49.323395}
+        - {x: -58.34778, y: -66.323395}
+        - {x: -12.347778, y: -78.323395}
+        - {x: 45.65222, y: -78.323395}
+        - {x: 64.65222, y: -73.323395}
+        - {x: 64.65222, y: 45.676605}
+        - {x: 61.65222, y: 57.676605}
+    - name: warp_gate_sprite_sheet_48
+      rect:
+        serializedVersion: 2
+        x: 2408
+        y: 3.2000122
+        width: 301
+        height: 300.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.111694, y: 58.676605}
+        - {x: -56.111694, y: 42.676605}
+        - {x: -66.111694, y: 16.676605}
+        - {x: -66.111694, y: -40.323395}
+        - {x: -35.111694, y: -77.323395}
+        - {x: 28.888306, y: -77.323395}
+        - {x: 65.888306, y: -36.323395}
+        - {x: 65.888306, y: 34.676605}
+        - {x: 23.888306, y: 58.676605}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

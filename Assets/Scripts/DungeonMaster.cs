@@ -45,7 +45,6 @@ public class DungeonMaster : MonoBehaviour
 
     private GameObject red;
     private GameObject blue;
-    private IEnumerable<IWinCondition> important_objects;
 
 	// Use this for initialization
 	void Start () {
@@ -53,11 +52,6 @@ public class DungeonMaster : MonoBehaviour
         red = GameObject.Find("Red player");
         blue = GameObject.Find("Blue player");
         paused = false;
-
-        important_objects = from t in Assembly.GetExecutingAssembly().GetTypes()
-                            where t.GetInterfaces().Contains(typeof(IWinCondition))
-                                     && t.GetConstructor(System.Type.EmptyTypes) != null
-                            select System.Activator.CreateInstance(t) as IWinCondition;
     }
 
     static public void Pause()

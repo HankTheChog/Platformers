@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainCamera : MonoBehaviour
 {
@@ -42,6 +43,14 @@ public class MainCamera : MonoBehaviour
             rect.y = 0;
 
             c.rect = rect;
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Application.CaptureScreenshot("level_" + SceneManager.GetActiveScene().buildIndex + ".png");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class screenshot : MonoBehaviour {
 
@@ -13,7 +13,7 @@ public class screenshot : MonoBehaviour {
 	void Update () {
 	if (Input.GetKeyDown(KeyCode.K))
         {
-            Application.CaptureScreenshot("Screenshot_level_" + EditorSceneManager.GetActiveScene().buildIndex);
+            Application.CaptureScreenshot("Screenshot_level_" + SceneManager.GetActiveScene().buildIndex);
         }
 	}
 }
