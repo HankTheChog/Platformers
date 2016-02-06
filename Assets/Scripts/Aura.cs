@@ -23,7 +23,7 @@ public class Aura : MonoBehaviour {
         magnet_is_on_color.a = 0.9f;
 
         scale_full_magnet = (GameParameters.magnet_radius / sprite_size.x);
-        scale_no_magnet = 0.05f; // at this size aura is completely within the player
+        scale_no_magnet = 0.0f;
         scale_current = scale_no_magnet;
         
     }

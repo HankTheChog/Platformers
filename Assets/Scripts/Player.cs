@@ -164,6 +164,7 @@ public class Player : MonoBehaviour {
             other_player_script.NotifyAboutMagnet(true);
             start_time_for_magnet = Time.time;
             anim.Play("Blue activate magnet");
+            Debug.Log("activated");
         }
         // If pulling, and letting go of the key (or have to cancel magnet for some reason)
         if (I_am_pulling_with_magnet && (magnet_button_state == false || MagnetAllowed()==false))
@@ -248,7 +249,7 @@ public class Player : MonoBehaviour {
         if (other_player)
         {
             float distance = (transform.position - other_player.transform.position).magnitude;
-            return (CanTriggerMagnet() && other_player_script.CanBeAffectedByMagnet() && distance < GameParameters.magnet_radius);
+            return (CanTriggerMagnet() && other_player_script.CanBeAffectedByMagnet() /*&& distance < GameParameters.magnet_radius*/);
         }
         // else, other player is dead... :-(
         return false;
