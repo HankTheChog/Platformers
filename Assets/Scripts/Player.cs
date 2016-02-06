@@ -164,7 +164,6 @@ public class Player : MonoBehaviour {
             other_player_script.NotifyAboutMagnet(true);
             start_time_for_magnet = Time.time;
             anim.Play("Blue activate magnet");
-            Debug.Log("activated");
         }
         // If pulling, and letting go of the key (or have to cancel magnet for some reason)
         if (I_am_pulling_with_magnet && (magnet_button_state == false || MagnetAllowed()==false))

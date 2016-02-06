@@ -4,28 +4,25 @@ using System.Collections;
 public class Aura : MonoBehaviour {
 
     private Vector2 sprite_size;
-    private Color original_color;
-    private Color magnet_is_on_color;
+
     private string magnet_button;
     private bool magnet_is_on;
 
     private float scale_full_magnet;
     private float scale_no_magnet;
     private float scale_current;
+    private Animator anim;
 
 
 
 	// Use this for initialization
 	void Start () {
         sprite_size = this.gameObject.GetComponent<SpriteRenderer>().bounds.extents;
-        original_color = transform.gameObject.GetComponent<SpriteRenderer>().color;
-        magnet_is_on_color = original_color;
-        magnet_is_on_color.a = 0.9f;
+        anim = this.gameObject.GetComponent<Animator>();
 
         scale_full_magnet = (GameParameters.magnet_radius / sprite_size.x);
         scale_no_magnet = 0.0f;
         scale_current = scale_no_magnet;
-        
     }
 	
     public void SetMagnetButton(string b)
@@ -41,11 +38,14 @@ public class Aura : MonoBehaviour {
         {
             //magnet button just pressed, start the glowing effect
             magnet_is_on = true; // must set this before starting the coroutine
+            anim.Play("Blue halo animation");
             StartCoroutine(GlowEffect());
         }
         magnet_is_on = button_state_now;
 
-        float s = scale_current * (1 + 0.01f * Mathf.Sin(10f * Time.time)); // this causes the pulsing effect of the aura.
+        
+        //float s = scale_current * (1 + 0.01f * Mathf.Sin(10f * Time.time)); // this causes the pulsing effect of the aura.
+        float s = scale_current;
         transform.localScale = new Vector3(s, s, 1.0f);
     }
 
@@ -79,8 +79,7 @@ public class Aura : MonoBehaviour {
             }
             yield return null;
         }
-        transform.gameObject.GetComponent<SpriteRenderer>().color = original_color;
-        
+
         // make it return slowly to normal
         start_time = Time.time;
         float s = scale_current;
@@ -89,6 +88,7 @@ public class Aura : MonoBehaviour {
             scale_current = Mathf.Lerp(s, scale_no_magnet, (Time.time - start_time) / 0.1f);
             yield return null;
         }
+        anim.Play("idle");
     }
     
 }
