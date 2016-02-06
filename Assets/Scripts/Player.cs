@@ -202,6 +202,11 @@ public class Player : MonoBehaviour {
 
     private void SetCollider()
     {
+        if (WhoAmI == PlayerType.BLUE)
+        {
+            return; // todo: separate blue and red logic to 2 classes
+        }
+
         var collider = transform.gameObject.AddComponent<PolygonCollider2D>();
         collider.sharedMaterial = Resources.Load("PlayerPMat") as PhysicsMaterial2D;
         if (in_platform_mode)
@@ -327,7 +332,7 @@ public class Player : MonoBehaviour {
 
         body = transform.GetChild(0);
         Vector3 origin_of_lines = transform.position;
-        origin_of_lines.y -= body.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y; // move origin to bottom of player
+        //origin_of_lines.y -= body.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y; // move origin to bottom of player -- BUG. sprite is too big
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(origin_of_lines, GameParameters.magnet_radius);

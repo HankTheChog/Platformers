@@ -4,16 +4,12 @@ using System.Collections;
 public class PlayerBodyScript : MonoBehaviour {
 
     private Player parent_script;
-
-    private float dist_to_ground;
-    private Vector2 size_self;
+    private BoxCollider2D ground_check;
 
 	// Use this for initialization
 	void Start () {
         parent_script = transform.parent.GetComponent<Player>();
-
-        dist_to_ground = GetComponent<SpriteRenderer>().bounds.extents.y;
-        size_self = GetComponent<SpriteRenderer>().bounds.extents;
+        ground_check = transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>();
     }
 	
 	// Update is called once per frame
@@ -23,7 +19,7 @@ public class PlayerBodyScript : MonoBehaviour {
 
     public bool IsGrounded()
     {
-        return Physics2D.BoxCast(transform.position, size_self, 0, Vector2.down, 0.75f * dist_to_ground, parent_script.can_jump_off.value);
+        return Physics2D.IsTouchingLayers(ground_check, parent_script.can_jump_off.value);
     }
 
     void OnCollisionEnter2D(Collision2D col)
