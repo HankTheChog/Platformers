@@ -248,7 +248,7 @@ public class Player : MonoBehaviour {
         if (other_player)
         {
             float distance = (transform.position - other_player.transform.position).magnitude;
-            return (CanTriggerMagnet() && other_player_script.CanBeAffectedByMagnet() /*&& distance < GameParameters.magnet_radius*/);
+            return (CanTriggerMagnet() && other_player_script.CanBeAffectedByMagnet() && distance < GameParameters.magnet_radius);
         }
         // else, other player is dead... :-(
         return false;
