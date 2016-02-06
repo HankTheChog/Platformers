@@ -14,9 +14,11 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rb;
     private Transform body;
     private PlayerBodyScript body_script;
+    private Animator anim;
     private GameObject other_player;
     private Player other_player_script;
     private Rigidbody2D other_player_rb;
+
 
     //   Magnet related
     private float time_for_full_magnet_power = 4f;
@@ -39,12 +41,39 @@ public class Player : MonoBehaviour {
     // Input buttons
     private string horizontal, vertical, platformize, magnet_button;
 
+
+    // coordinates for PolygonCollider for both states (player and platform)
+    private Vector2[] player_collider = new Vector2[]
+    {
+        new Vector2( 0.055f,  0.485f ),
+        new Vector2(-0.0768f, 0.492f),
+        new Vector2(-0.051f,  0.0045f),
+        new Vector2(-0.194f, -0.166f),
+        new Vector2(-0.1f,   -0.485f),
+        new Vector2(0.135f,  -0.485f),
+        new Vector2(0.174f,  -0.239f),
+        new Vector2(0.174f,  -0.021f)
+    };
+
+    private Vector2[] platform_collider = new Vector2[]
+    {
+        new Vector2(-0.062f, 0.246f),
+        new Vector2(-0.154f, 0.196f),
+        new Vector2(-0.682f, 0.206f),
+        new Vector2(-0.650f, -0.237f),
+        new Vector2(0.646f, -0.245f),
+        new Vector2(-0.659f, -0.044f),
+        new Vector2(0.679f, 0.206f)
+    };
+
     // Use this for initialization
     void Start () {
 
         rb = GetComponent<Rigidbody2D>();
         body = transform.GetChild(0);
         body_script = body.GetComponent<PlayerBodyScript>();
+        anim = body.GetComponent<Animator>();
+        SetCollider();
 
         if (WhoAmI == PlayerType.RED)
         {
@@ -120,6 +149,7 @@ public class Player : MonoBehaviour {
         float v = Input.GetAxisRaw(vertical);
         jump_button_pressed = (v == 1);
 
+        Debug.Log(grounded);
         if (jump_button_pressed && !jump_button_was_pressed && grounded && !jumping && !in_platform_mode)
         {
             StartCoroutine(Jump());
@@ -153,18 +183,38 @@ public class Player : MonoBehaviour {
     {
         in_platform_mode = !in_platform_mode;
 
-        Vector3 scale = body.localScale;
+        //Vector3 scale = body.localScale;
+
         if (in_platform_mode)
         {
-            scale.x = 3; // enlarging the player horizontally
+            //scale.x = 3; // enlarging the player horizontally
+            anim.Play("Orange turning to platform");
             rb.isKinematic = true; // gravity won't apply if we're kinematic
         }
         else
         {
-            scale.x = 1;
+            //scale.x = 1;
+            anim.Play("Orange turning back into player");
             rb.isKinematic = false;
         }
-        body.localScale = scale;
+
+        Destroy(GetComponent<PolygonCollider2D>());
+        SetCollider();
+        //body.localScale = scale;
+    }
+
+    private void SetCollider()
+    {
+        var collider = transform.gameObject.AddComponent<PolygonCollider2D>();
+        collider.sharedMaterial = Resources.Load("PlayerPMat") as PhysicsMaterial2D;
+        if (in_platform_mode)
+        {
+            collider.SetPath(0, platform_collider);
+        }
+        else
+        {
+            collider.SetPath(0, player_collider);
+        }
     }
 
     public void EnteredAntiMagnet()

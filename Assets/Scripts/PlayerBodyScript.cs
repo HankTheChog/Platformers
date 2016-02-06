@@ -11,8 +11,9 @@ public class PlayerBodyScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         parent_script = transform.parent.GetComponent<Player>();
-        dist_to_ground = GetComponent<PolygonCollider2D>().bounds.extents.y;
-        size_self = GetComponent<PolygonCollider2D>().bounds.extents;
+
+        dist_to_ground = GetComponent<SpriteRenderer>().bounds.extents.y;
+        size_self = GetComponent<SpriteRenderer>().bounds.extents;
     }
 	
 	// Update is called once per frame
