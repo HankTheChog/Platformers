@@ -43,6 +43,7 @@ public class Player : MonoBehaviour {
 
 
     // coordinates for PolygonCollider for both states (player and platform)
+    // only relevant for red player !!
     private Vector2[] player_collider = new Vector2[]
     {
         new Vector2( 0.055f,  0.485f ),
@@ -149,26 +150,27 @@ public class Player : MonoBehaviour {
         float v = Input.GetAxisRaw(vertical);
         jump_button_pressed = (v == 1);
 
-        Debug.Log(grounded);
         if (jump_button_pressed && !jump_button_was_pressed && grounded && !jumping && !in_platform_mode)
         {
             StartCoroutine(Jump());
         }
 
         bool magnet_button_state = Input.GetButton(magnet_button);
-        // If starting to pull
 
+        // If starting to pull
         if (I_am_pulling_with_magnet == false && magnet_button_state && MagnetAllowed())
         {
             I_am_pulling_with_magnet = true;
             other_player_script.NotifyAboutMagnet(true);
             start_time_for_magnet = Time.time;
+            anim.Play("Blue activate magnet");
         }
         // If pulling, and letting go of the key (or have to cancel magnet for some reason)
         if (I_am_pulling_with_magnet && (magnet_button_state == false || MagnetAllowed()==false))
         {
             I_am_pulling_with_magnet = false;
             other_player_script.NotifyAboutMagnet(false);
+            anim.Play("Blue deactivates magnet");
         }
 
         if (Input.GetButtonDown(platformize))
@@ -183,24 +185,19 @@ public class Player : MonoBehaviour {
     {
         in_platform_mode = !in_platform_mode;
 
-        //Vector3 scale = body.localScale;
-
         if (in_platform_mode)
         {
-            //scale.x = 3; // enlarging the player horizontally
             anim.Play("Orange turning to platform");
             rb.isKinematic = true; // gravity won't apply if we're kinematic
         }
         else
         {
-            //scale.x = 1;
             anim.Play("Orange turning back into player");
             rb.isKinematic = false;
         }
 
         Destroy(GetComponent<PolygonCollider2D>());
         SetCollider();
-        //body.localScale = scale;
     }
 
     private void SetCollider()
