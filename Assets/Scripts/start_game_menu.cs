@@ -18,7 +18,7 @@ public class start_game_menu : MonoBehaviour {
 
     public void button_start()
     {
-        StartCoroutine(FadeToBlackAndRestart(0));
+        StartCoroutine(FadeToBlackAndRestart(1));
     }
 
     public void button_quit()
