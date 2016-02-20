@@ -25,7 +25,7 @@ static public class GlobalWinCondition
     {
         foreach (var o in objects)
         {
-            if (o.WinConditionSatisfied() == false)
+            if (o!=null && o.WinConditionSatisfied() == false)
             {
                 return false;
             }   
