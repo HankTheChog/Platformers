@@ -1,49 +1,78 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InGameMenu : MonoBehaviour {
 
     public GameObject menu;
-    public static bool paused;
+    public GameObject screen_canvas;
+
+
+    private bool menu_is_shown;
 
 	// Use this for initialization
 	void Start () {
-        paused = false;
-        menu.SetActive(false);
+        EnableOrDisableMenu(false);
+        screen_canvas.GetComponent<Image>().color = Color.clear;
     }
-	
-    void Pause()
+
+    void EnableOrDisableMenu(bool menu_is_on)
     {
-        paused = true;
-        Time.timeScale = 0f;
-        menu.SetActive(true);
-    }
-    void Resume()
-    {
-        paused = false;
-        Time.timeScale = 1f;
-        menu.SetActive(false);
+        menu_is_shown = menu_is_on;
+        menu.SetActive(menu_is_shown);
+        if (menu_is_shown)
+            DungeonMaster.Pause();
+        else
+            DungeonMaster.Resume();
     }
 	// Update is called once per frame
 	void Update () {
 	    if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            EnableOrDisableMenu(!menu_is_shown);
         }
 	}
 
     public void Button_ResumeGame()
     {
-        Resume();
+        EnableOrDisableMenu(false);
     }
+
     public void Button_RestartLevel()
     {
-        Resume();
-        Application.LoadLevel(Application.loadedLevelName);
+        EnableOrDisableMenu(false);
+        StartCoroutine(FadeToBlackAndRestart(SceneManager.GetActiveScene().buildIndex));
+   //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
     public void Button_Quit()
     {
         Application.Quit();
+    }
+
+    public void RespawnLevel()
+    {
+        StartCoroutine(FadeToBlackAndRestart(SceneManager.GetActiveScene().buildIndex));
+        DungeonMaster.Pause();
+    }
+
+    public void MoveToLevel(int level)
+    {
+        StartCoroutine(FadeToBlackAndRestart(level));
+        DungeonMaster.Pause();
+    }
+
+    public IEnumerator FadeToBlackAndRestart(int level)
+    {
+        float t = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - t < 1)
+        {
+            screen_canvas.GetComponent<Image>().color = Color.Lerp(Color.clear, Color.black, Time.realtimeSinceStartup - t);
+            yield return null;
+        }
+        DungeonMaster.Resume();
+        SceneManager.LoadScene(level);
     }
 
 }

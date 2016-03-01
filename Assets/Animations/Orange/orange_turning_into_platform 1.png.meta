@@ -1,0 +1,430 @@
+fileFormatVersion: 2
+guid: db5489f9b4cfe684e94f7664e6808e06
+timeCreated: 1454674304
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: orange_turning_into_platform 1_0
+    21300002: orange_turning_into_platform 1_1
+    21300004: orange_turning_into_platform 1_2
+    21300006: orange_turning_into_platform 1_3
+    21300008: orange_turning_into_platform 1_4
+    21300010: orange_turning_into_platform 1_5
+    21300012: orange_turning_into_platform 1_6
+    21300014: orange_turning_into_platform 1_7
+    21300016: orange_turning_into_platform 1_8
+    21300018: orange_turning_into_platform 1_9
+    21300020: orange_turning_into_platform 1_10
+    21300022: orange_turning_into_platform 1_11
+    21300024: orange_turning_into_platform 1_12
+    21300026: orange_turning_into_platform 1_13
+    21300028: orange_turning_into_platform 1_14
+    21300030: orange_turning_into_platform 1_15
+    21300032: orange_turning_into_platform 1_16
+    21300034: orange_turning_into_platform 1_17
+    21300036: orange_turning_into_platform 1_18
+    21300038: orange_turning_into_platform 1_19
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: orange_turning_into_platform 1_0
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 657
+        width: 76
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24, y: 67.5}
+        - {x: -24, y: 67.5}
+        - {x: -38, y: 56.5}
+        - {x: -38, y: -67.5}
+        - {x: 36, y: -67.5}
+        - {x: 38, y: -64.5}
+        - {x: 38, y: 28.5}
+        - {x: 36, y: 56.5}
+    - name: orange_turning_into_platform 1_1
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 657
+        width: 100
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 62}
+        - {x: -23, y: 62}
+        - {x: -50, y: 23}
+        - {x: -50, y: -62}
+        - {x: 50, y: -62}
+        - {x: 50, y: 25}
+        - {x: 25, y: 61}
+    - name: orange_turning_into_platform 1_2
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 657
+        width: 177
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -87.5, y: 44.5}
+        - {x: -88.5, y: 40.5}
+        - {x: -88.5, y: -28.5}
+        - {x: -84.5, y: -37.5}
+        - {x: -78.5, y: -44.5}
+        - {x: 88.5, y: -44.5}
+        - {x: 88.5, y: 36.5}
+        - {x: 81.5, y: 44.5}
+    - name: orange_turning_into_platform 1_3
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 657
+        width: 185
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -88.5, y: 44}
+        - {x: -92.5, y: 39}
+        - {x: -92.5, y: -35}
+        - {x: -79.5, y: -44}
+        - {x: 84.5, y: -44}
+        - {x: 92.5, y: -35}
+        - {x: 92.5, y: 44}
+    - name: orange_turning_into_platform 1_4
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 657
+        width: 179
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -75.5, y: 44.5}
+        - {x: -89.5, y: 40.5}
+        - {x: -89.5, y: -30.5}
+        - {x: -78.5, y: -44.5}
+        - {x: 83.5, y: -44.5}
+        - {x: 89.5, y: -34.5}
+        - {x: 89.5, y: 40.5}
+        - {x: 80.5, y: 44.5}
+    - name: orange_turning_into_platform 1_5
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 456
+        width: 125
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -62.5, y: 56}
+        - {x: -62.5, y: -56}
+        - {x: 62.5, y: -56}
+        - {x: 62.5, y: 37}
+        - {x: 34.5, y: 56}
+    - name: orange_turning_into_platform 1_6
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 456
+        width: 151
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 50}
+        - {x: -75.5, y: 41}
+        - {x: -75.5, y: -38}
+        - {x: -65.5, y: -50}
+        - {x: 67.5, y: -50}
+        - {x: 75.5, y: -37}
+        - {x: 75.5, y: 30}
+        - {x: 35.5, y: 50}
+    - name: orange_turning_into_platform 1_7
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 456
+        width: 181
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -90.5, y: 44}
+        - {x: -90.5, y: -44}
+        - {x: 90.5, y: -44}
+        - {x: 90.5, y: 44}
+    - name: orange_turning_into_platform 1_8
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 456
+        width: 173
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -75.5, y: 45.5}
+        - {x: -86.5, y: 39.5}
+        - {x: -86.5, y: -37.5}
+        - {x: -85.5, y: -38.5}
+        - {x: -77.5, y: -45.5}
+        - {x: 86.5, y: -45.5}
+        - {x: 86.5, y: 45.5}
+    - name: orange_turning_into_platform 1_9
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 456
+        width: 167
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -75.5, y: 46.5}
+        - {x: -83.5, y: 32.5}
+        - {x: -83.5, y: -35.5}
+        - {x: -73.5, y: -46.5}
+        - {x: 73.5, y: -46.5}
+        - {x: 83.5, y: -38.5}
+        - {x: 83.5, y: 46.5}
+    - name: orange_turning_into_platform 1_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 255
+        width: 170
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -51, y: 45.5}
+        - {x: -75, y: 41.5}
+        - {x: -85, y: 34.5}
+        - {x: -85, y: -45.5}
+        - {x: 85, y: -45.5}
+        - {x: 85, y: 45.5}
+    - name: orange_turning_into_platform 1_11
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 255
+        width: 173
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -86.5, y: 45}
+        - {x: -86.5, y: -45}
+        - {x: 86.5, y: -45}
+        - {x: 86.5, y: 45}
+    - name: orange_turning_into_platform 1_12
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 255
+        width: 177
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -88.5, y: 44.5}
+        - {x: -88.5, y: -40.5}
+        - {x: -81.5, y: -44.5}
+        - {x: 88.5, y: -44.5}
+        - {x: 88.5, y: 44.5}
+    - name: orange_turning_into_platform 1_13
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 255
+        width: 177
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -76.5, y: 44}
+        - {x: -88.5, y: 37}
+        - {x: -88.5, y: -31}
+        - {x: -87.5, y: -39}
+        - {x: -82.5, y: -44}
+        - {x: 88.5, y: -44}
+        - {x: 88.5, y: 34}
+        - {x: 84.5, y: 44}
+    - name: orange_turning_into_platform 1_14
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 255
+        width: 177
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -88.5, y: 44}
+        - {x: -88.5, y: -40}
+        - {x: -75.5, y: -44}
+        - {x: 88.5, y: -44}
+        - {x: 88.5, y: 44}
+    - name: orange_turning_into_platform 1_15
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 54
+        width: 177
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -87.5, y: 44.5}
+        - {x: -88.5, y: 40.5}
+        - {x: -88.5, y: -28.5}
+        - {x: -84.5, y: -37.5}
+        - {x: -78.5, y: -44.5}
+        - {x: 88.5, y: -44.5}
+        - {x: 88.5, y: 36.5}
+        - {x: 81.5, y: 44.5}
+    - name: orange_turning_into_platform 1_16
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 54
+        width: 177
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -85.5, y: 44}
+        - {x: -88.5, y: 39}
+        - {x: -88.5, y: -44}
+        - {x: 82.5, y: -44}
+        - {x: 88.5, y: -26}
+        - {x: 88.5, y: 44}
+    - name: orange_turning_into_platform 1_17
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 54
+        width: 177
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -86.5, y: 44}
+        - {x: -88.5, y: 41}
+        - {x: -88.5, y: -40}
+        - {x: -84.5, y: -44}
+        - {x: 88.5, y: -44}
+        - {x: 88.5, y: 40}
+        - {x: 85.5, y: 44}
+    - name: orange_turning_into_platform 1_18
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 54
+        width: 177
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -85.5, y: 44}
+        - {x: -88.5, y: 37}
+        - {x: -88.5, y: -31}
+        - {x: -84.5, y: -37}
+        - {x: -79.5, y: -44}
+        - {x: 88.5, y: -44}
+        - {x: 88.5, y: 34}
+        - {x: 84.5, y: 44}
+    - name: orange_turning_into_platform 1_19
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 54
+        width: 177
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -84.5, y: 44.5}
+        - {x: -88.5, y: 39.5}
+        - {x: -88.5, y: -40.5}
+        - {x: -81.5, y: -44.5}
+        - {x: 88.5, y: -44.5}
+        - {x: 88.5, y: 33.5}
+        - {x: 79.5, y: 44.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

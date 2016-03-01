@@ -1,0 +1,563 @@
+fileFormatVersion: 2
+guid: 7bc4716879c1de64c8e34ae009004b45
+timeCreated: 1454757678
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: blue_deactivates_magnet_sprite_sheet_0
+    21300002: blue_deactivates_magnet_sprite_sheet_1
+    21300004: blue_deactivates_magnet_sprite_sheet_2
+    21300006: blue_deactivates_magnet_sprite_sheet_3
+    21300008: blue_deactivates_magnet_sprite_sheet_4
+    21300010: blue_deactivates_magnet_sprite_sheet_5
+    21300012: blue_deactivates_magnet_sprite_sheet_6
+    21300014: blue_deactivates_magnet_sprite_sheet_7
+    21300016: blue_deactivates_magnet_sprite_sheet_8
+    21300018: blue_deactivates_magnet_sprite_sheet_9
+    21300020: blue_deactivates_magnet_sprite_sheet_10
+    21300022: blue_deactivates_magnet_sprite_sheet_11
+    21300024: blue_deactivates_magnet_sprite_sheet_12
+    21300026: blue_deactivates_magnet_sprite_sheet_13
+    21300028: blue_deactivates_magnet_sprite_sheet_14
+    21300030: blue_deactivates_magnet_sprite_sheet_15
+    21300032: blue_deactivates_magnet_sprite_sheet_16
+    21300034: blue_deactivates_magnet_sprite_sheet_17
+    21300036: blue_deactivates_magnet_sprite_sheet_18
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: blue_deactivates_magnet_sprite_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 918
+        width: 281
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 117.5, y: -81}
+        - {x: 135.5, y: -28}
+        - {x: 140.5, y: -17}
+        - {x: 140.5, y: 30}
+        - {x: 130.5, y: 51}
+        - {x: 86.5, y: 115}
+        - {x: 66.5, y: 123}
+        - {x: 25.5, y: 126}
+        - {x: -8.5, y: 128}
+        - {x: -81.5, y: 128}
+        - {x: -101.5, y: 121}
+        - {x: -109.5, y: 111}
+        - {x: -122.5, y: 77}
+        - {x: -123.5, y: 36}
+        - {x: -139.5, y: 20}
+        - {x: -140.5, y: 12}
+        - {x: -140.5, y: -56}
+        - {x: -136.5, y: -65}
+        - {x: -123.5, y: -83}
+        - {x: -71.5, y: -128}
+        - {x: 73.5, y: -128}
+        - {x: 90.5, y: -124}
+        - {x: 109.5, y: -105}
+    - name: blue_deactivates_magnet_sprite_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 918
+        width: 281
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 117.5, y: -81}
+        - {x: 135.5, y: -28}
+        - {x: 140.5, y: -17}
+        - {x: 140.5, y: 30}
+        - {x: 130.5, y: 51}
+        - {x: 86.5, y: 115}
+        - {x: 66.5, y: 123}
+        - {x: 25.5, y: 126}
+        - {x: -8.5, y: 128}
+        - {x: -81.5, y: 128}
+        - {x: -101.5, y: 121}
+        - {x: -109.5, y: 111}
+        - {x: -122.5, y: 77}
+        - {x: -123.5, y: 36}
+        - {x: -139.5, y: 20}
+        - {x: -140.5, y: 12}
+        - {x: -140.5, y: -56}
+        - {x: -136.5, y: -65}
+        - {x: -123.5, y: -83}
+        - {x: -71.5, y: -128}
+        - {x: 73.5, y: -128}
+        - {x: 90.5, y: -124}
+        - {x: 109.5, y: -105}
+    - name: blue_deactivates_magnet_sprite_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 918
+        width: 281
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 117.5, y: -81}
+        - {x: 135.5, y: -28}
+        - {x: 140.5, y: -17}
+        - {x: 140.5, y: 30}
+        - {x: 130.5, y: 51}
+        - {x: 86.5, y: 115}
+        - {x: 66.5, y: 123}
+        - {x: 25.5, y: 126}
+        - {x: -8.5, y: 128}
+        - {x: -81.5, y: 128}
+        - {x: -101.5, y: 121}
+        - {x: -109.5, y: 111}
+        - {x: -122.5, y: 77}
+        - {x: -123.5, y: 36}
+        - {x: -139.5, y: 20}
+        - {x: -140.5, y: 12}
+        - {x: -140.5, y: -56}
+        - {x: -136.5, y: -65}
+        - {x: -123.5, y: -83}
+        - {x: -71.5, y: -128}
+        - {x: 73.5, y: -128}
+        - {x: 90.5, y: -124}
+        - {x: 109.5, y: -105}
+    - name: blue_deactivates_magnet_sprite_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 918
+        width: 281
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 117.5, y: -81}
+        - {x: 135.5, y: -28}
+        - {x: 140.5, y: -17}
+        - {x: 140.5, y: 30}
+        - {x: 130.5, y: 51}
+        - {x: 86.5, y: 115}
+        - {x: 66.5, y: 123}
+        - {x: 25.5, y: 126}
+        - {x: -8.5, y: 128}
+        - {x: -81.5, y: 128}
+        - {x: -101.5, y: 121}
+        - {x: -109.5, y: 111}
+        - {x: -122.5, y: 77}
+        - {x: -123.5, y: 36}
+        - {x: -139.5, y: 20}
+        - {x: -140.5, y: 12}
+        - {x: -140.5, y: -56}
+        - {x: -136.5, y: -65}
+        - {x: -123.5, y: -83}
+        - {x: -71.5, y: -128}
+        - {x: 73.5, y: -128}
+        - {x: 90.5, y: -124}
+        - {x: 109.5, y: -105}
+    - name: blue_deactivates_magnet_sprite_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 918
+        width: 279
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 123.5, y: -42.5}
+        - {x: 138.5, y: -28.5}
+        - {x: 139.5, y: -21.5}
+        - {x: 139.5, y: 38.5}
+        - {x: 136.5, y: 42.5}
+        - {x: 112.5, y: 66.5}
+        - {x: 104.5, y: 86.5}
+        - {x: 93.5, y: 108.5}
+        - {x: 70.5, y: 123.5}
+        - {x: 47.5, y: 127.5}
+        - {x: -83.5, y: 127.5}
+        - {x: -92.5, y: 122.5}
+        - {x: -107.5, y: 112.5}
+        - {x: -120.5, y: 82.5}
+        - {x: -129.5, y: 29.5}
+        - {x: -139.5, y: 7.5}
+        - {x: -139.5, y: -68.5}
+        - {x: -91.5, y: -117.5}
+        - {x: -63.5, y: -127.5}
+        - {x: 78.5, y: -127.5}
+        - {x: 89.5, y: -123.5}
+        - {x: 106.5, y: -108.5}
+        - {x: 116.5, y: -80.5}
+    - name: blue_deactivates_magnet_sprite_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1511
+        y: 917
+        width: 279
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 139.5, y: -22.5}
+        - {x: 139.5, y: 35.5}
+        - {x: 122.5, y: 62.5}
+        - {x: 94.5, y: 109.5}
+        - {x: 84.5, y: 116.5}
+        - {x: 63.5, y: 125.5}
+        - {x: 48.5, y: 128.5}
+        - {x: 46.5, y: 128.5}
+        - {x: 0.5, y: 124.5}
+        - {x: -13.5, y: 128.5}
+        - {x: -86.5, y: 128.5}
+        - {x: -102.5, y: 120.5}
+        - {x: -120.5, y: 80.5}
+        - {x: -124.5, y: 36.5}
+        - {x: -139.5, y: 8.5}
+        - {x: -139.5, y: -48.5}
+        - {x: -131.5, y: -73.5}
+        - {x: -80.5, y: -118.5}
+        - {x: -66.5, y: -128.5}
+        - {x: 83.5, y: -128.5}
+        - {x: 110.5, y: -110.5}
+        - {x: 117.5, y: -80.5}
+        - {x: 123.5, y: -45.5}
+    - name: blue_deactivates_magnet_sprite_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 620
+        width: 280
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 130, y: -36}
+        - {x: 140, y: -17}
+        - {x: 140, y: 29}
+        - {x: 131, y: 49}
+        - {x: 74, y: 106}
+        - {x: 55, y: 111}
+        - {x: -6, y: 127}
+        - {x: -94, y: 127}
+        - {x: -107, y: 111}
+        - {x: -120, y: 80}
+        - {x: -130, y: 25}
+        - {x: -140, y: 2}
+        - {x: -140, y: -59}
+        - {x: -121, y: -88}
+        - {x: -87, y: -113}
+        - {x: -65, y: -127}
+        - {x: -5, y: -127}
+        - {x: 73, y: -118}
+        - {x: 97, y: -101}
+        - {x: 108, y: -72}
+    - name: blue_deactivates_magnet_sprite_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 620
+        width: 267
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 125.5, y: -29}
+        - {x: 133.5, y: -11}
+        - {x: 133.5, y: 39}
+        - {x: 119.5, y: 63}
+        - {x: 45.5, y: 100}
+        - {x: -17.5, y: 120}
+        - {x: -92.5, y: 120}
+        - {x: -119.5, y: 77}
+        - {x: -133.5, y: 13}
+        - {x: -133.5, y: -40}
+        - {x: -124.5, y: -63}
+        - {x: -88.5, y: -112}
+        - {x: -70.5, y: -120}
+        - {x: -14.5, y: -120}
+        - {x: 49.5, y: -101}
+        - {x: 79.5, y: -86}
+        - {x: 93.5, y: -54}
+    - name: blue_deactivates_magnet_sprite_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 619
+        width: 237
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 118.5, y: -8.5}
+        - {x: 118.5, y: 54.5}
+        - {x: 99.5, y: 72.5}
+        - {x: 65.5, y: 80.5}
+        - {x: -2.5, y: 113.5}
+        - {x: -70.5, y: 113.5}
+        - {x: -95.5, y: 95.5}
+        - {x: -118.5, y: 29.5}
+        - {x: -118.5, y: -32.5}
+        - {x: -94.5, y: -100.5}
+        - {x: -70.5, y: -113.5}
+        - {x: -16.5, y: -113.5}
+        - {x: 8.5, y: -99.5}
+        - {x: 62.5, y: -71.5}
+        - {x: 98.5, y: -35.5}
+    - name: blue_deactivates_magnet_sprite_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 634
+        width: 208
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 80, y: 75}
+        - {x: 22, y: 99}
+        - {x: -71, y: 99}
+        - {x: -104, y: 53}
+        - {x: -104, y: -38}
+        - {x: -84, y: -86}
+        - {x: -62, y: -99}
+        - {x: -5, y: -99}
+        - {x: 57, y: -61}
+        - {x: 104, y: -12}
+        - {x: 104, y: 54}
+    - name: blue_deactivates_magnet_sprite_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 649
+        width: 179
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 86.5, y: 57}
+        - {x: 46.5, y: 87}
+        - {x: -48.5, y: 87}
+        - {x: -84.5, y: 77}
+        - {x: -89.5, y: 64}
+        - {x: -89.5, y: -42}
+        - {x: -82.5, y: -79}
+        - {x: -66.5, y: -87}
+        - {x: 15.5, y: -87}
+        - {x: 56.5, y: -60}
+        - {x: 89.5, y: -18}
+        - {x: 89.5, y: 44}
+    - name: blue_deactivates_magnet_sprite_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 663
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -65.5, y: 80}
+        - {x: -80.5, y: 50}
+        - {x: -80.5, y: -70}
+        - {x: -56.5, y: -80}
+        - {x: 63.5, y: -80}
+        - {x: 80.5, y: -70}
+        - {x: 80.5, y: 76}
+        - {x: 78.5, y: 80}
+    - name: blue_deactivates_magnet_sprite_sheet_12
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 372
+        width: 156
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -51, y: 75}
+        - {x: -78, y: 42}
+        - {x: -78, y: -46}
+        - {x: -48, y: -75}
+        - {x: 78, y: -75}
+        - {x: 78, y: 55}
+        - {x: 46, y: 75}
+    - name: blue_deactivates_magnet_sprite_sheet_13
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 371
+        width: 156
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 75}
+        - {x: -73, y: 51}
+        - {x: -78, y: 27}
+        - {x: -78, y: -41}
+        - {x: -68, y: -65}
+        - {x: -32, y: -75}
+        - {x: 64, y: -75}
+        - {x: 78, y: -58}
+        - {x: 78, y: 71}
+        - {x: 56, y: 75}
+    - name: blue_deactivates_magnet_sprite_sheet_14
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 371
+        width: 159
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -52.5, y: 75}
+        - {x: -79.5, y: 57}
+        - {x: -79.5, y: -45}
+        - {x: -74.5, y: -66}
+        - {x: -40.5, y: -75}
+        - {x: 62.5, y: -75}
+        - {x: 79.5, y: -70}
+        - {x: 79.5, y: 67}
+        - {x: 46.5, y: 75}
+    - name: blue_deactivates_magnet_sprite_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 371
+        width: 160
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 52, y: 75}
+        - {x: -67, y: 75}
+        - {x: -80, y: 33}
+        - {x: -80, y: -46}
+        - {x: -65, y: -68}
+        - {x: -32, y: -75}
+        - {x: 69, y: -75}
+        - {x: 80, y: -61}
+        - {x: 80, y: 36}
+        - {x: 74, y: 62}
+    - name: blue_deactivates_magnet_sprite_sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 371
+        width: 160
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -61, y: 75}
+        - {x: -80, y: 54}
+        - {x: -80, y: -72}
+        - {x: -55, y: -75}
+        - {x: 73, y: -75}
+        - {x: 80, y: -67}
+        - {x: 80, y: 75}
+    - name: blue_deactivates_magnet_sprite_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 371
+        width: 160
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -61, y: 75}
+        - {x: -80, y: 54}
+        - {x: -80, y: -72}
+        - {x: -55, y: -75}
+        - {x: 73, y: -75}
+        - {x: 80, y: -67}
+        - {x: 80, y: 75}
+    - name: blue_deactivates_magnet_sprite_sheet_18
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 71
+        width: 160
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -61, y: 75}
+        - {x: -80, y: 54}
+        - {x: -80, y: -72}
+        - {x: -55, y: -75}
+        - {x: 73, y: -75}
+        - {x: 80, y: -67}
+        - {x: 80, y: 75}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
