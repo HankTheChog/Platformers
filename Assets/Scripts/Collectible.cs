@@ -5,6 +5,8 @@ public class Collectible : MonoBehaviour , IWinCondition
 {
     public bool must_be_collected_for_win = false;
     public GameObject image_to_activate_upon_collection;
+    public GameObject image_to_activate_upon_collection2;
+    public GameObject image_to_activate_upon_collection3;
     private bool collected = false;
 
 
@@ -32,6 +34,8 @@ public class Collectible : MonoBehaviour , IWinCondition
             Destroy(transform.gameObject, 0.1f);
             collected = true;
             image_to_activate_upon_collection.SetActive(true);
+            image_to_activate_upon_collection2.SetActive(true);
+            image_to_activate_upon_collection3.SetActive(true);
         }
     }
 
