@@ -107,23 +107,26 @@ public class Player : MonoBehaviour {
         float h = Input.GetAxisRaw(horizontal);
         grounded = body_script.IsGrounded();
 
-        if (grounded)
+        if (WhoAmI == PlayerType.BLUE || !in_platform_mode)
         {
-            if (h * rb.velocity.x < max_walk_speed)
-                rb.AddForce(Vector2.right * h * GameParameters.walking_accel);
-
-            if (Mathf.Abs(rb.velocity.x) > max_walk_speed)
-                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_walk_speed, rb.velocity.y);
-        }
-        else
-        {
-            if (!I_am_being_pulled_by_magnet)
+            if (grounded)
             {
-                if (h * rb.velocity.x < max_air_horizontal_speed)
-                    rb.AddForce(Vector2.right * h * GameParameters.air_travel_accel);
+                if (h * rb.velocity.x < max_walk_speed)
+                    rb.AddForce(Vector2.right * h * GameParameters.walking_accel);
 
-                if (Mathf.Abs(rb.velocity.x) > max_air_horizontal_speed)
-                    rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_air_horizontal_speed, rb.velocity.y);
+                if (Mathf.Abs(rb.velocity.x) > max_walk_speed)
+                    rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_walk_speed, rb.velocity.y);
+            }
+            else
+            {
+                if (!I_am_being_pulled_by_magnet)
+                {
+                    if (h * rb.velocity.x < max_air_horizontal_speed)
+                        rb.AddForce(Vector2.right * h * GameParameters.air_travel_accel);
+
+                    if (Mathf.Abs(rb.velocity.x) > max_air_horizontal_speed)
+                        rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_air_horizontal_speed, rb.velocity.y);
+                }
             }
         }
 
@@ -198,22 +201,31 @@ public class Player : MonoBehaviour {
 
     private void TurnIntoPlatformOrBack()
     {
-        in_platform_mode = !in_platform_mode;
-
-        if (in_platform_mode)
+        if (!in_platform_mode)
         {
+            in_platform_mode = true;
+            rb.isKinematic = true; // gravity doesn't apply if we're kinematic
             anim.Play("Orange turning to platform");
-            rb.isKinematic = true; // gravity won't apply if we're kinematic
+            Destroy(GetComponent<PolygonCollider2D>());
+            SetCollider();
         }
         else
         {
             anim.Play("Orange turning back into player");
-            rb.isKinematic = false;
+            // don't change in_platform_mode and isKinematic, wait for animation to end
         }
+    }
+
+    // called by animation-end event from the body script
+    public void TransformAnimationOver()
+    {
+        in_platform_mode = false;
+        rb.isKinematic = false;
 
         Destroy(GetComponent<PolygonCollider2D>());
         SetCollider();
     }
+
 
     private void SetCollider()
     {
