@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
     public PlayerType WhoAmI;
 
     public LayerMask can_jump_off;
+
+    private bool facing_right = true;
     
 
     private Rigidbody2D rb;
@@ -124,6 +126,19 @@ public class Player : MonoBehaviour {
                     rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * max_air_horizontal_speed, rb.velocity.y);
             }
         }
+
+        if (h != 0 && !in_platform_mode)
+        {
+            if (WhoAmI == PlayerType.BLUE)
+                facing_right = h > 0;
+            else
+                facing_right = h < 0; // should flip the orange sprite, and then I can get rid of this ugly if...
+
+            var scale = transform.localScale;
+            scale.x = facing_right ? 1 : -1;
+            transform.localScale = scale;
+        }
+
 
         if (I_am_pulling_with_magnet && MagnetAllowed())
         {
