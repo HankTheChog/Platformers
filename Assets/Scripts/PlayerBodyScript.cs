@@ -22,6 +22,11 @@ public class PlayerBodyScript : MonoBehaviour {
         return Physics2D.IsTouchingLayers(ground_check, parent_script.can_jump_off.value);
     }
 
+    public void TransformAnimationIsOver()
+    {
+        parent_script.TransformAnimationOver();
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "spike")
