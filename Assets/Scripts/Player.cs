@@ -133,9 +133,9 @@ public class Player : MonoBehaviour {
         if (h != 0 && !in_platform_mode)
         {
             if (WhoAmI == PlayerType.BLUE)
-                facing_right = h > 0;
+                facing_right = h < 0;
             else
-                facing_right = h < 0; // should flip the orange sprite, and then I can get rid of this ugly if...
+                facing_right = h > 0; // should flip the orange sprite, and then I can get rid of this ugly if...
 
             var scale = transform.localScale;
             scale.x = facing_right ? 1 : -1;
