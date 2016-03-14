@@ -18,7 +18,7 @@ public class ExitDoorway : MonoBehaviour, IWinCondition
 	void Start () {
         GlobalWinCondition.add(this);
 
-        int n = (int)Player.PlayerType.NUM_OF_PLAYERS;
+        int n = (int)BasicPlayer.PlayerType.NUM_OF_PLAYERS;
         touching = new bool[n];
         for (int i = 0; i < n; i++)
             touching[i] = false;
@@ -26,8 +26,8 @@ public class ExitDoorway : MonoBehaviour, IWinCondition
 	
 	// Update is called once per frame
 	void Update () {
-        bool red_touching = touching[(int)Player.PlayerType.RED];
-        bool blue_touching = touching[(int)Player.PlayerType.BLUE];
+        bool red_touching = touching[(int)BasicPlayer.PlayerType.RED];
+        bool blue_touching = touching[(int)BasicPlayer.PlayerType.BLUE];
         bool both_touching = red_touching && blue_touching;
         bool only_one_touching = red_touching ^ blue_touching;
         bool one_or_both_touching = red_touching || blue_touching;
@@ -58,12 +58,12 @@ public class ExitDoorway : MonoBehaviour, IWinCondition
         return win_condition;
     }
 
-    public void PlayerTouching(Player.PlayerType who)
+    public void PlayerTouching(BasicPlayer.PlayerType who)
     {
         touching[(int)who] = true;
     }
 
-    public void PlayerLeaving(Player.PlayerType who)
+    public void PlayerLeaving(BasicPlayer.PlayerType who)
     {
         touching[(int)who] = false;
 
