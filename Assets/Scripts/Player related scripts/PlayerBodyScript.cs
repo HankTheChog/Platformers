@@ -3,36 +3,20 @@ using System.Collections;
 
 public class PlayerBodyScript : MonoBehaviour {
 
-    private Player parent_script;
-    private BoxCollider2D ground_check;
+    private BasicPlayer parent_script;
 
 	// Use this for initialization
 	void Start () {
-        parent_script = transform.parent.GetComponent<Player>();
-        ground_check = transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>();
+        parent_script = transform.parent.GetComponent<BasicPlayer>();
     }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public bool IsGrounded()
+    public void TurnedIntoHuman()
     {
-        return Physics2D.IsTouchingLayers(ground_check, parent_script.can_jump_off.value);
+        parent_script.TurnedIntoHuman();
     }
-
-    public void TransformAnimationIsOver()
+    public void TurnedIntoPlatform()
     {
-        parent_script.TransformAnimationOver();
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "spike")
-        {
-            parent_script.HitSpikes();
-        }
+        parent_script.TurnedIntoPlatform();
     }
 
     void OnTriggerEnter2D(Collider2D col)

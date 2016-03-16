@@ -33,9 +33,12 @@ public class Collectible : MonoBehaviour , IWinCondition
             // todo: add a cool effect here.
             Destroy(transform.gameObject, 0.1f);
             collected = true;
-            image_to_activate_upon_collection.SetActive(true);
-            image_to_activate_upon_collection2.SetActive(true);
-            image_to_activate_upon_collection3.SetActive(true);
+            if (image_to_activate_upon_collection)
+                image_to_activate_upon_collection.SetActive(true);
+            if (image_to_activate_upon_collection2)
+                image_to_activate_upon_collection2.SetActive(true);
+            if (image_to_activate_upon_collection3)
+                image_to_activate_upon_collection3.SetActive(true);
         }
     }
 
