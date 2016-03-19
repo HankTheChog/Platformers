@@ -21,6 +21,7 @@ public class RedPlayerScript : BasicPlayer {
     void Start () {
         BasicPlayerStart();
         WhoAmI = PlayerType.RED;
+        anim = GetComponent<Animator>(); //override what BasicPlayerScript set
 
         foreach (Transform childT in transform)
         {
@@ -93,6 +94,7 @@ public class RedPlayerScript : BasicPlayer {
 
     public void TransformShape()
     {
+        GetComponent<AudioSource>().Play();
         if (!in_platform_mode)
         {
             in_platform_mode = true;
@@ -106,7 +108,7 @@ public class RedPlayerScript : BasicPlayer {
         }
     }
 
-    public override void TurnedIntoHuman()
+    public void TurnedIntoHuman()
     {
         in_platform_mode = false;
         rb.isKinematic = false;
@@ -114,7 +116,7 @@ public class RedPlayerScript : BasicPlayer {
         platform_body.SetActive(false);
 
     }
-    public override void TurnedIntoPlatform()
+    public void TurnedIntoPlatform()
     {
         human_body.SetActive(false);
         platform_body.SetActive(true);

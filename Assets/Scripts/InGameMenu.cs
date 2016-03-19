@@ -43,7 +43,6 @@ public class InGameMenu : MonoBehaviour {
     {
         EnableOrDisableMenu(false);
         StartCoroutine(FadeToBlackAndRestart(SceneManager.GetActiveScene().buildIndex));
-   //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Button_Quit()
@@ -65,10 +64,13 @@ public class InGameMenu : MonoBehaviour {
 
     public IEnumerator FadeToBlackAndRestart(int level)
     {
-        float t = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup - t < 1)
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play(); // why doesn't this work ?
+        float start_t = Time.realtimeSinceStartup;
+        float end_t = audio.clip.length + start_t;
+        while (Time.realtimeSinceStartup < end_t)
         {
-            screen_canvas.GetComponent<Image>().color = Color.Lerp(Color.clear, Color.black, Time.realtimeSinceStartup - t);
+            screen_canvas.GetComponent<Image>().color = Color.Lerp(Color.clear, Color.black, Time.realtimeSinceStartup - start_t);
             yield return null;
         }
         DungeonMaster.Resume();

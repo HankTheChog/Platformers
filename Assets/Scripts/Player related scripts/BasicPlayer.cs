@@ -26,8 +26,6 @@ public abstract class BasicPlayer : MonoBehaviour {
     // Use this for initialization
     public void BasicPlayerStart() {
         rb = GetComponent<Rigidbody2D>();
-        body = transform.GetChild(0);
-        anim = body.GetComponent<Animator>();
         foreach(Transform childT in transform)
         {
             if (childT.gameObject.name == "GroundCheck")
@@ -130,11 +128,7 @@ total_time = the time for applying the force can be calculated from above.
 
 
     public abstract void EnteredAntiMagnet();
-
     public abstract void LeavingAntiMagnet();
-
-    public virtual void TurnedIntoHuman() { }
-    public virtual void TurnedIntoPlatform() { }
 
     public void OnDrawGizmos()
     {

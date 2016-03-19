@@ -25,6 +25,9 @@ public class BluePlayerScript : BasicPlayer {
     // Use this for initialization
     void Start () {
         BasicPlayerStart();
+
+        body = transform.GetChild(0);
+        anim = body.GetComponent<Animator>();
         other_player = GameObject.Find("Red player");
 
         transform.GetChild(1).GetComponent<Aura>().SetMagnetButton(magnet_button);
