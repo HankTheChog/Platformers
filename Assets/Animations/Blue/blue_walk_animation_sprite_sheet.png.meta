@@ -1,0 +1,251 @@
+fileFormatVersion: 2
+guid: 7a25082db8e4b8141af3ac0e0d6485f1
+timeCreated: 1458418199
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: blue_walk_animation_sprite_sheet_0
+    21300002: blue_walk_animation_sprite_sheet_1
+    21300004: blue_walk_animation_sprite_sheet_2
+    21300006: blue_walk_animation_sprite_sheet_3
+    21300008: blue_walk_animation_sprite_sheet_4
+    21300010: blue_walk_animation_sprite_sheet_5
+    21300012: blue_walk_animation_sprite_sheet_6
+    21300014: blue_walk_animation_sprite_sheet_7
+    21300016: blue_walk_animation_sprite_sheet_8
+    21300018: blue_walk_animation_sprite_sheet_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: blue_walk_animation_sprite_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 72
+        width: 160
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34.944, y: 51.152}
+        - {x: -54.944, y: 39.152}
+        - {x: -54.944, y: -27.848}
+        - {x: -52.944, y: -29.848}
+        - {x: -25.944, y: -50.848}
+        - {x: 50.056, y: -50.848}
+        - {x: 55.056, y: -36.848}
+        - {x: 55.056, y: 39.152}
+        - {x: 46.056, y: 51.152}
+    - name: blue_walk_animation_sprite_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 69
+        width: 158
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45.27867, y: 51.104}
+        - {x: -54.27867, y: 43.104}
+        - {x: -54.27867, y: -40.896}
+        - {x: -39.27867, y: -50.896}
+        - {x: 54.72133, y: -50.896}
+        - {x: 54.72133, y: 47.104}
+        - {x: 41.72133, y: 51.104}
+    - name: blue_walk_animation_sprite_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 67
+        width: 157
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32.97867, y: 51.738667}
+        - {x: -53.97867, y: 31.738667}
+        - {x: -53.97867, y: -25.261333}
+        - {x: -38.97867, y: -41.261333}
+        - {x: -18.978668, y: -50.261333}
+        - {x: 45.02133, y: -50.261333}
+        - {x: 54.02133, y: -49.261333}
+        - {x: 54.02133, y: 38.738667}
+        - {x: 27.021332, y: 51.738667}
+    - name: blue_walk_animation_sprite_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 66
+        width: 158
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47.86133, y: 50.056}
+        - {x: -53.86133, y: 47.056}
+        - {x: -53.86133, y: -49.944}
+        - {x: 54.13867, y: -49.944}
+        - {x: 54.13867, y: 47.056}
+        - {x: 48.13867, y: 50.056}
+    - name: blue_walk_animation_sprite_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1267
+        y: 63
+        width: 157
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.56134, y: 52.008}
+        - {x: -53.56134, y: 32.008}
+        - {x: -53.56134, y: -26.992}
+        - {x: -34.56134, y: -51.992}
+        - {x: 51.43866, y: -51.992}
+        - {x: 55.43866, y: -44.992}
+        - {x: 55.43866, y: 49.008}
+        - {x: 34.43866, y: 52.008}
+    - name: blue_walk_animation_sprite_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1567
+        y: 62
+        width: 157
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.261353, y: 52.825333}
+        - {x: -52.261353, y: 50.825333}
+        - {x: -53.261353, y: 45.825333}
+        - {x: -53.261353, y: -52.174667}
+        - {x: 54.738647, y: -52.174667}
+        - {x: 54.738647, y: 41.825333}
+        - {x: 42.738647, y: 52.825333}
+    - name: blue_walk_animation_sprite_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1868
+        y: 64
+        width: 158
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47.278687, y: 53.690666}
+        - {x: -54.278687, y: 45.690666}
+        - {x: -54.278687, y: -52.309334}
+        - {x: 54.721313, y: -52.309334}
+        - {x: 54.721313, y: 53.690666}
+    - name: blue_walk_animation_sprite_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 2167
+        y: 66
+        width: 159
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -51.161377, y: 52.056}
+        - {x: -54.161377, y: 40.056}
+        - {x: -54.161377, y: -51.944}
+        - {x: 54.838623, y: -51.944}
+        - {x: 54.838623, y: 47.056}
+        - {x: 43.838623, y: 52.056}
+    - name: blue_walk_animation_sprite_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 2467
+        y: 69
+        width: 158
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -42.86133, y: 51.604}
+        - {x: -53.86133, y: 45.604}
+        - {x: -53.86133, y: -32.396}
+        - {x: -36.86133, y: -51.396}
+        - {x: 45.13867, y: -51.396}
+        - {x: 54.13867, y: -48.396}
+        - {x: 54.13867, y: 36.604}
+        - {x: 47.13867, y: 51.604}
+    - name: blue_walk_animation_sprite_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 2767
+        y: 72
+        width: 158
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 49.4386, y: 51.152}
+        - {x: -37.5614, y: 51.152}
+        - {x: -53.5614, y: 46.152}
+        - {x: -53.5614, y: -30.848}
+        - {x: -34.5614, y: -50.848}
+        - {x: 47.4386, y: -50.848}
+        - {x: 55.4386, y: -44.848}
+        - {x: 55.4386, y: 32.152}
+        - {x: 53.4386, y: 44.152}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

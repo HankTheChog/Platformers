@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BluePlayerScript : BasicPlayer {
 
+    private float prev_h;
+
     // Blue needs link to red, to pull him
     private GameObject other_player;
     private RedPlayerScript other_player_script;
@@ -25,7 +27,7 @@ public class BluePlayerScript : BasicPlayer {
     // Use this for initialization
     void Start () {
         BasicPlayerStart();
-
+        prev_h = 0f;
         body = transform.GetChild(0);
         anim = body.GetComponent<Animator>();
         other_player = GameObject.Find("Red player");
@@ -48,6 +50,17 @@ public class BluePlayerScript : BasicPlayer {
             bool facing_right = h > 0;
             change_sprite_to_match_walk_direction(facing_right);
         }
+
+        if (prev_h == 0 && h != 0)
+        {
+            anim.Play("Walk");
+        }
+        else if (h == 0 && prev_h != 0)
+        {
+            anim.Play("Idle");
+        }
+
+        prev_h = h;
 
         check_magnet_pull();
     }

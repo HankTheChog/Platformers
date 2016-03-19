@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RedPlayerScript : BasicPlayer {
 
+    private float prev_h;
     // Platform mode
     private bool in_platform_mode = false;
     private GameObject human_body;
@@ -22,6 +23,7 @@ public class RedPlayerScript : BasicPlayer {
         BasicPlayerStart();
         WhoAmI = PlayerType.RED;
         anim = GetComponent<Animator>(); //override what BasicPlayerScript set
+        prev_h = 0f;
 
         foreach (Transform childT in transform)
         {
@@ -47,6 +49,15 @@ public class RedPlayerScript : BasicPlayer {
                 change_sprite_to_match_walk_direction(facing_right);
             }
 
+            if (prev_h == 0 && h != 0)
+            {
+                anim.Play("Walk");
+            }
+            else if (h == 0 && prev_h != 0)
+            {
+                anim.Play("Idle");
+            }
+            prev_h = h;
         }
     }
 
