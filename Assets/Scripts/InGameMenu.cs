@@ -65,9 +65,10 @@ public class InGameMenu : MonoBehaviour {
     public IEnumerator FadeToBlackAndRestart(int level)
     {
         AudioSource audio = GetComponent<AudioSource>();
-        audio.Play(); // why doesn't this work ?
+        audio.Play(); // why doesn't this work inside the coroutine?
+
         float start_t = Time.realtimeSinceStartup;
-        float end_t = audio.clip.length + start_t;
+        float end_t = GetComponent<AudioSource>().clip.length + start_t;
         while (Time.realtimeSinceStartup < end_t)
         {
             screen_canvas.GetComponent<Image>().color = Color.Lerp(Color.clear, Color.black, Time.realtimeSinceStartup - start_t);

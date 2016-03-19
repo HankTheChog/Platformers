@@ -54,6 +54,7 @@ public class Aura : MonoBehaviour {
         float start_time = Time.time;
 
         GetComponent<AudioSource>().Play();
+
         while (magnet_is_on)
         {
             float time_since_start = Time.time - start_time;

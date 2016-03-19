@@ -5,35 +5,6 @@ using System.Reflection;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-public interface IWinCondition
-{
-    bool WinConditionSatisfied();
-}
-
-static public class GlobalWinCondition
-{
-    static List<IWinCondition> objects;
-    static GlobalWinCondition()
-    {
-        objects = new List<IWinCondition>();
-    }
-    static public void add(IWinCondition obj)
-    {
-        objects.Add(obj);
-    }
-    static public bool IsWinning()
-    {
-        foreach (var o in objects)
-        {
-            if (o.WinConditionSatisfied() == false)
-            {
-                return false;
-            }   
-        }
-        return true;
-    }
-
-}
 
 public class DungeonMaster : MonoBehaviour
 {
@@ -46,6 +17,7 @@ public class DungeonMaster : MonoBehaviour
 
     private GameObject red;
     private GameObject blue;
+    private bool activated_transition;
 
     void OnLevelWasLoaded()
     {
@@ -58,6 +30,7 @@ public class DungeonMaster : MonoBehaviour
         UI = (Transform)Instantiate(UI_prefab);
         red = GameObject.Find("Red player");
         blue = GameObject.Find("Blue player");
+        activated_transition = false;
     }
 
     static public void Pause()
@@ -85,9 +58,9 @@ public class DungeonMaster : MonoBehaviour
             // todo: pause the game, show some message/fade-out/graphics, then reload
             UI.GetComponent<InGameMenu>().RespawnLevel();
         }
-        if (level_finished)
+        if (level_finished && !activated_transition)
         {
-            
+            activated_transition = true;
             UI.GetComponent<InGameMenu>().MoveToLevel(NextLevel);
         }
 	}
