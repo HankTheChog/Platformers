@@ -20,7 +20,6 @@ public class GroundCheckScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "spike")
         {
-            Debug.Log("body touched spikes");
             parent_script.HitSpikes();
         }
     }
