@@ -5,35 +5,6 @@ using System.Reflection;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-public interface IWinCondition
-{
-    bool WinConditionSatisfied();
-}
-
-static public class GlobalWinCondition
-{
-    static List<IWinCondition> objects;
-    static GlobalWinCondition()
-    {
-        objects = new List<IWinCondition>();
-    }
-    static public void add(IWinCondition obj)
-    {
-        objects.Add(obj);
-    }
-    static public bool IsWinning()
-    {
-        foreach (var o in objects)
-        {
-            if (o.WinConditionSatisfied() == false)
-            {
-                return false;
-            }   
-        }
-        return true;
-    }
-
-}
 
 public class DungeonMaster : MonoBehaviour
 {
@@ -42,16 +13,24 @@ public class DungeonMaster : MonoBehaviour
     public int NextLevel;
 
     public static bool paused;
+    private static bool level_finished;
 
     private GameObject red;
     private GameObject blue;
+    private bool activated_transition;
 
-	// Use this for initialization
-	void Start () {
+    void OnLevelWasLoaded()
+    {
+        level_finished = false;
+        paused = false;
+    }
+
+    // Use this for initialization
+    void Start () {
         UI = (Transform)Instantiate(UI_prefab);
         red = GameObject.Find("Red player");
         blue = GameObject.Find("Blue player");
-        paused = false;
+        activated_transition = false;
     }
 
     static public void Pause()
@@ -65,7 +44,13 @@ public class DungeonMaster : MonoBehaviour
         paused = false;
         Time.timeScale = 1f;
     }
-        // Update is called once per frame
+
+    static public void LevelFinished()
+    {
+        level_finished = true;
+    }
+
+    // Update is called once per frame
     void Update () {
         if (red == null || blue == null)
         {
@@ -73,9 +58,9 @@ public class DungeonMaster : MonoBehaviour
             // todo: pause the game, show some message/fade-out/graphics, then reload
             UI.GetComponent<InGameMenu>().RespawnLevel();
         }
-
-        if (GlobalWinCondition.IsWinning())
+        if (level_finished && !activated_transition)
         {
+            activated_transition = true;
             UI.GetComponent<InGameMenu>().MoveToLevel(NextLevel);
         }
 	}

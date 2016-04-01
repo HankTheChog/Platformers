@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
+// This script should always be attached to an object with collider.
+// It's meant to catch collision with triggers, such a anti-magnet and
+// the exit gate.
+// I never put the colliders on the root object of the player, so I need a 
+// separate script for these kind of collisions
 public class PlayerBodyScript : MonoBehaviour {
 
     private BasicPlayer parent_script;
@@ -10,15 +17,6 @@ public class PlayerBodyScript : MonoBehaviour {
         parent_script = transform.parent.GetComponent<BasicPlayer>();
     }
 	
-    public void TurnedIntoHuman()
-    {
-        parent_script.TurnedIntoHuman();
-    }
-    public void TurnedIntoPlatform()
-    {
-        parent_script.TurnedIntoPlatform();
-    }
-
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "anti-magnet")
@@ -27,7 +25,7 @@ public class PlayerBodyScript : MonoBehaviour {
         }
         if (col.tag == "exit door")
         {
-            col.gameObject.GetComponent<ExitDoorway>().PlayerTouching(parent_script.WhoAmI);
+            col.gameObject.GetComponent<ExitGate>().PlayerTouching(parent_script.WhoAmI);
         }
     }
     void OnTriggerExit2D(Collider2D col)
@@ -38,7 +36,7 @@ public class PlayerBodyScript : MonoBehaviour {
         }
         if (col.tag == "exit door")
         {
-            col.gameObject.GetComponent<ExitDoorway>().PlayerLeaving(parent_script.WhoAmI);
+            col.gameObject.GetComponent<ExitGate>().PlayerLeaving(parent_script.WhoAmI);
         }
     }
 }

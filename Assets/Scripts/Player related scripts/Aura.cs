@@ -53,6 +53,8 @@ public class Aura : MonoBehaviour {
     {
         float start_time = Time.time;
 
+        GetComponent<AudioSource>().Play();
+
         while (magnet_is_on)
         {
             float time_since_start = Time.time - start_time;
@@ -81,6 +83,7 @@ public class Aura : MonoBehaviour {
         }
 
         // make it return slowly to normal
+        //todo: make the sound fade away slowly
         start_time = Time.time;
         float s = scale_current;
         while (!magnet_is_on && (Time.time - start_time) < 0.1f)
@@ -89,6 +92,7 @@ public class Aura : MonoBehaviour {
             yield return null;
         }
         anim.Play("idle");
+        GetComponent<AudioSource>().Stop();
     }
     
 }

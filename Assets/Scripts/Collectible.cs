@@ -1,44 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Collectible : MonoBehaviour , IWinCondition
+public class Collectible : MonoBehaviour
 {
-    public bool must_be_collected_for_win = false;
     public GameObject image_to_activate_upon_collection;
     public GameObject image_to_activate_upon_collection2;
-    public GameObject image_to_activate_upon_collection3;
-    private bool collected = false;
 
+    static public int total_number;
+    static public int number_touched;
 
-	// Use this for initialization
-	void Start () {
-        GlobalWinCondition.add(this);
-	}
+    void OnLevelWasLoaded()
+    {
+        total_number = 0;
+        number_touched = 0;
+    }
+
+    void Start () {
+        total_number++;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-    public bool WinConditionSatisfied()
-    {
-        return (must_be_collected_for_win ? collected : true);
-    }
-
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag=="Player")
         {
+            GetComponent<AudioSource>().Play();
+            number_touched++;
             Destroy(transform.GetComponent<CircleCollider2D>());
-            // todo: add a cool effect here.
-            Destroy(transform.gameObject, 0.1f);
-            collected = true;
+
             if (image_to_activate_upon_collection)
                 image_to_activate_upon_collection.SetActive(true);
             if (image_to_activate_upon_collection2)
                 image_to_activate_upon_collection2.SetActive(true);
-            if (image_to_activate_upon_collection3)
-                image_to_activate_upon_collection3.SetActive(true);
         }
     }
 

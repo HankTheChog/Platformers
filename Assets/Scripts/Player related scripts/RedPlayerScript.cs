@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RedPlayerScript : BasicPlayer {
 
+    private float prev_h;
     // Platform mode
     private bool in_platform_mode = false;
     private GameObject human_body;
@@ -21,6 +22,8 @@ public class RedPlayerScript : BasicPlayer {
     void Start () {
         BasicPlayerStart();
         WhoAmI = PlayerType.RED;
+        anim = GetComponent<Animator>(); //override what BasicPlayerScript set
+        prev_h = 0f;
 
         foreach (Transform childT in transform)
         {
@@ -46,6 +49,15 @@ public class RedPlayerScript : BasicPlayer {
                 change_sprite_to_match_walk_direction(facing_right);
             }
 
+            if (prev_h == 0 && h != 0)
+            {
+                anim.Play("Walk");
+            }
+            else if (h == 0 && prev_h != 0)
+            {
+                anim.Play("Idle");
+            }
+            prev_h = h;
         }
     }
 
@@ -93,6 +105,7 @@ public class RedPlayerScript : BasicPlayer {
 
     public void TransformShape()
     {
+        GetComponent<AudioSource>().Play();
         if (!in_platform_mode)
         {
             in_platform_mode = true;
@@ -106,7 +119,7 @@ public class RedPlayerScript : BasicPlayer {
         }
     }
 
-    public override void TurnedIntoHuman()
+    public void TurnedIntoHuman()
     {
         in_platform_mode = false;
         rb.isKinematic = false;
@@ -114,7 +127,7 @@ public class RedPlayerScript : BasicPlayer {
         platform_body.SetActive(false);
 
     }
-    public override void TurnedIntoPlatform()
+    public void TurnedIntoPlatform()
     {
         human_body.SetActive(false);
         platform_body.SetActive(true);
