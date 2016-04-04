@@ -3,28 +3,28 @@ using System.Collections;
 
 public class GameParameters : MonoBehaviour {
 
-    static public float max_walk_speed = 5.0f;
+    static public float max_walk_speed = 6.0f;
     public float _max_walk_speed
     {
         get { return max_walk_speed; }
         set { max_walk_speed = value; } 
     }
 
-    static public float max_air_horizontal_speed = 5.0f;
+    static public float max_air_horizontal_speed = 6.0f;
     public float _max_air_horizontal_speed
     {
         get { return max_air_horizontal_speed; }
         set { max_air_horizontal_speed = value; }
     }
 
-    static public float walking_accel = 20f;
+    static public float walking_accel = 25f;
     public float _walking_accel
     {
         get { return walking_accel; }
         set { walking_accel = value; }
     }
 
-    static public float air_travel_accel = 10f;
+    static public float air_travel_accel = 15f;
     public float _air_travel_accel
     {
         get { return air_travel_accel; }
@@ -52,7 +52,7 @@ public class GameParameters : MonoBehaviour {
         set { min_jump_height = value; }
     }
 
-    static public float magnet_radius = 4f;
+    static public float magnet_radius = 4.8f;
     public float _magnet_radius
     {
         get { return magnet_radius; }

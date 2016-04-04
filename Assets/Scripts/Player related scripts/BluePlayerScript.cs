@@ -4,7 +4,7 @@ using System.Collections;
 public class BluePlayerScript : BasicPlayer {
 
     private float prev_h;
-
+    
     // Blue needs link to red, to pull him
     private GameObject other_player;
     private RedPlayerScript other_player_script;
@@ -104,7 +104,7 @@ public class BluePlayerScript : BasicPlayer {
             Vector3 from_him_to_me = (transform.position - other_player.transform.position);
             //float distance = from_him_to_me.magnitude;
 
-            float start_force = Physics2D.gravity.magnitude;
+            float start_force = Physics2D.gravity.magnitude * 1.2f;
             float final_force = start_force * 1.4f;
 
             float time_since_activation = (Time.time - start_time_for_magnet);
